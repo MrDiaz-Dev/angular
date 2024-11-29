@@ -1,0 +1,52 @@
+<div class="grid">
+  <ng-container *ngFor="let section of sections">
+    <div class="col-12 pb-0" *ngIf="section.title">
+      <h2>{{ section.title }}</h2>
+      <hr />
+    </div>
+    <ng-container *ngFor="let item of section.items">
+      <div class="col-6">
+        <div
+          class="card mb-0"
+          [routerLink]="item.link ? [item.link] : []"
+          (click)="item.onClick()"
+          style="cursor: pointer; height: 100%; position: relative"
+        >
+          <a
+            [href]="
+              rootUrl + (item.enlace ? item.enlace : item.link ? item.link : '')
+            "
+            class="full-link"
+            (click)="$event.preventDefault()"
+            *ngIf="item.enlace ? item.enlace : item.link ? item.link : ''"
+          ></a>
+          <div class="flex justify-content-center align-items-center">
+            <div
+              [class]="
+                'flex align-items-center justify-content-center bg-' +
+                item.color +
+                '-100'
+              "
+              [ngStyle]="{
+                width: '7.5rem',
+                height: '7.5rem',
+                borderRadius: '50%'
+              }"
+            >
+              <i
+                [class]="item.icon + ' text-' + item.color + '-500'"
+                style="font-size: 3.75rem"
+              ></i>
+            </div>
+          </div>
+          <span class="block text-center font-medium text-2xl mt-2">
+            {{ item.title }}
+          </span>
+        </div>
+      </div>
+    </ng-container>
+    <!-- <ng-container *ngIf="section.items == []" class="flex justify-content-center">
+      <h3 class="text-center">Welcome to Conva Tools</h3>
+    </ng-container> -->
+  </ng-container>
+</div>

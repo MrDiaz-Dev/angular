@@ -1,1 +1,243 @@
 /* You can add global styles to this file, and also import other style files */
+
+$gutter: 1rem; //for primeflex grid system
+@import "assets/layout/styles/layout/layout.scss";
+
+/* PrimeNG */
+@import "assets/layout/styles/tema/primeng.css";
+@import "../node_modules/primeflex/primeflex.scss";
+@import "../node_modules/primeicons/primeicons.css";
+
+/* Demos */
+@import "assets/demo/styles/flags/flags.css";
+@import "assets/demo/styles/badges.scss";
+@import "assets/demo/styles/code.scss";
+
+/* gridStack */
+
+// @import "gridstack/dist/gridstack.min.css";
+
+// ICONS
+@import "assets/icons/icons.css";
+@import "assets/icons/style.css";
+
+// // bootstrap 5
+// @import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.img-custom-width {
+  max-width: 50vw;
+  overflow: hidden;
+}
+
+textarea {
+  min-height: 36px;
+  min-width: 30%;
+  max-width: 100%;
+  // form-sizing: content;
+}
+
+tr {
+  cursor: pointer;
+}
+
+.custom-big-button-disabled {
+  opacity: 0.5;
+}
+
+.toolbar-sin-bordes {
+  border: none;
+  padding: 0;
+  background-color: transparent;
+}
+
+.boton-transparente {
+  background-color: transparent;
+  border: none;
+  color: #a5abb3;
+  .pi {
+    font-size: 2vh;
+  }
+}
+
+.boton-transparente-green {
+  background-color: transparent;
+  border: none;
+  color: green;
+  .pi {
+    font-size: 2vh;
+  }
+}
+
+.boton-transparente:hover {
+  background-color: transparent !important;
+  color: var(--primary-color) !important;
+}
+
+.boton-transparente-green:hover {
+  background-color: transparent !important;
+  color: greenyellow !important;
+}
+
+.boton-transparente:focus {
+  background-color: transparent !important;
+  color: var(--primary-color) !important;
+  box-shadow: none;
+}
+
+.clickable-card {
+  transition: border-color 0.5s ease-out;
+  hr {
+    transition: border-color 0.5s ease-out;
+  }
+}
+
+.detail-card {
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.clickable-card:hover {
+  cursor: pointer;
+  border-color: var(--primary-color);
+  hr {
+    border-color: var(--primary-color);
+  }
+}
+
+.no-borders {
+  border: none;
+}
+
+.dropdown-width-full {
+  width: 100%;
+  .p-dropdown {
+    width: 100%;
+  }
+}
+
+.super-right .p-card {
+  box-shadow: none;
+  .p-card-content {
+    padding-top: 0;
+  }
+  border-right: solid #ff9800;
+}
+.super-left .p-card {
+  box-shadow: none;
+  .p-card-content {
+    padding-top: 0;
+  }
+  border-left: solid #ff0000;
+}
+
+.primary-color {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.p-datepicker table th {
+  padding: 0;
+}
+.p-datepicker table td {
+  padding: 0;
+}
+.p-datepicker .p-timepicker {
+  padding: 0;
+}
+
+.p-datepicker table td > span {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.p-datepicker .p-datepicker-header {
+  padding: 0;
+}
+
+.p-datepicker {
+  padding: 0;
+}
+
+.p-datepicker table {
+  margin: 0;
+}
+
+.multiselect-grande {
+  .p-multiselect-label {
+    width: 20rem;
+  }
+}
+
+.right-options-sidebar {
+  position: fixed;
+  width: 300px;
+  height: calc(92vh - 9rem);
+  z-index: 999;
+  overflow-y: auto;
+  user-select: none;
+  top: 7rem;
+  right: 2rem;
+  transition: transform $transitionDuration, right $transitionDuration;
+  background-color: var(--surface-overlay);
+  border-radius: $borderRadius;
+  padding: 0.5rem 1.5rem;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.02), 0px 0px 2px rgba(0, 0, 0, 0.05),
+    0px 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.notas-timeline {
+  .p-timeline.p-timeline-vertical .p-timeline-event-opposite,
+  .p-timeline.p-timeline-vertical .p-timeline-event-opposite {
+    max-width: 6rem;
+  }
+
+  .p-card-content {
+    padding-top: 0;
+  }
+  .p-card-header {
+    padding: 0.5rem;
+  }
+}
+
+.black {
+  color: black !important;
+}
+
+.full-link {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: none !important;
+  opacity: 0;
+  // z-index: 10 !important;
+  // pointer-events: none;
+}
+
+a:has(> .full-link ) 
+div:has(> .full-link),
+td:has(> .full-link),
+button.pi-element:has(> .full-link) {
+  position: relative;
+}
+
+a:has(> .full-link:focus ) {
+  box-shadow: inset var(--focus-ring);
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.card-focus {
+  box-shadow: 0px 0px 15px var(--primary-color);
+  border-color: var(--primary-color);
+}
