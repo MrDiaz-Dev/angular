@@ -28,7 +28,13 @@ import { NotfoundComponent } from './layout/notfound/notfound.component';
             import('./auth/auth.module').then((m) => m.AuthModule),
         },
         // { path: 'notfound', component: NotfoundComponent },
-        { path: '**', component: NotfoundComponent },
+        {
+          path: '**',
+          loadComponent: () =>
+            import('./layout/notfound/notfound.component').then(
+              (m) => m.NotfoundComponent
+            ),
+        },
       ],
       {
         scrollPositionRestoration: 'enabled',
