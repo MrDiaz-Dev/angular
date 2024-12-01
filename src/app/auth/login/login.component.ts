@@ -10,7 +10,7 @@ import { RippleModule } from 'primeng/ripple';
 import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
-import { NgIf } from '@angular/common';
+
 
 @Component({
     selector: 'app-login',
@@ -27,14 +27,13 @@ import { NgIf } from '@angular/common';
     ],
     standalone: true,
     imports: [
-        NgIf,
-        FormsModule,
-        ReactiveFormsModule,
-        InputTextModule,
-        PasswordModule,
-        ButtonModule,
-        RippleModule,
-    ],
+    FormsModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    PasswordModule,
+    ButtonModule,
+    RippleModule
+],
 })
 export class LoginComponent implements OnInit {
   // valCheck: string[] = ['remember'];

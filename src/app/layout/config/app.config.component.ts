@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LayoutService } from '../service/app.layout.service';
 import { MenuService } from '../shared/menu/app.menu.service';
-import { NgFor, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
 
@@ -10,11 +10,10 @@ import { SidebarModule } from 'primeng/sidebar';
     templateUrl: './app.config.component.html',
     standalone: true,
     imports: [
-        SidebarModule,
-        ButtonModule,
-        NgFor,
-        NgClass,
-    ],
+    SidebarModule,
+    ButtonModule,
+    NgClass
+],
 })
 export class AppConfigComponent implements OnInit {
   ngOnInit(): void {

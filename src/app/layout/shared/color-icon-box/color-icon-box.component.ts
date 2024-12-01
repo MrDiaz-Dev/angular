@@ -16,13 +16,17 @@ import { CommonModule } from '@angular/common';
         'width': justIcon ? 'fit-content' : '',
         'font-size': fontSize,
       }"
-    >
-      <i *ngIf="icon" [class]="iClass" [ngClass]="{ 'pr-0': !justIcon }"></i>
-      <span *ngIf="!justIcon" [class]="spanClass"
-        ><ng-content></ng-content
-      ></span>
+      >
+      @if (icon) {
+        <i [class]="iClass" [ngClass]="{ 'pr-0': !justIcon }"></i>
+      }
+      @if (!justIcon) {
+        <span [class]="spanClass"
+          ><ng-content></ng-content
+        ></span>
+      }
     </div>
-  `,
+    `,
 })
 export class ColorIconBoxComponent implements OnInit {
   @Input() icon: string = null;

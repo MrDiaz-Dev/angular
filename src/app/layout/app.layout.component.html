@@ -1,4 +1,4 @@
-<ng-container *ngIf="display; else hidden">
+@if (display) {
   <div class="layout-wrapper" [ngClass]="containerClass">
     <app-topbar></app-topbar>
     <!-- <div class="layout-sidebar" style="z-index: 99999;"> -->
@@ -15,13 +15,12 @@
     <app-config></app-config>
     <div class="layout-mask"></div>
   </div>
-</ng-container>
-
-<ng-template #hidden>
+} @else {
   <div
     class="layout-wrapper p-4 flex justify-content-center align-items-center"
     [ngClass]="containerClass"
-  >
+    >
     <router-outlet></router-outlet>
   </div>
-</ng-template>
+}
+

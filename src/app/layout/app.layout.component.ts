@@ -6,21 +6,20 @@ import { AppTopBarComponent } from './shared/topbar/app.topbar.component';
 import { AppSidebarComponent } from './shared/sidebar/app.sidebar.component';
 import { AppConfigComponent } from './config/app.config.component';
 import { AppFooterComponent } from './shared/footer/app.footer.component';
-import { NgIf, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
     selector: 'app-layout',
     templateUrl: './app.layout.component.html',
     standalone: true,
     imports: [
-        NgIf,
-        NgClass,
-        AppTopBarComponent,
-        AppSidebarComponent,
-        RouterOutlet,
-        AppFooterComponent,
-        AppConfigComponent,
-    ],
+    NgClass,
+    AppTopBarComponent,
+    AppSidebarComponent,
+    RouterOutlet,
+    AppFooterComponent,
+    AppConfigComponent
+],
 })
 export class AppLayoutComponent implements OnDestroy {
   overlayMenuOpenSubscription: Subscription;
