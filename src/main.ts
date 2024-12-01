@@ -27,8 +27,12 @@ export function initializeApp(configService: EnvConfigService) {
       .toPromise()
       .then((config) => {
         configService.setConfig(config);
+        environment.API_URL = '';
+        envProd.environment.API_URL = '';
         environment.API_URL = configService.apiUrl;
         envProd.environment.API_URL = configService.apiUrl;
+        environment.STORAGE_URL = configService.storageUrl;
+        envProd.environment.STORAGE_URL = configService.storageUrl;
       });
   };
 }

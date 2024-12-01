@@ -56,7 +56,7 @@ export class UsuarioService {
     return this.http.post(url, refresh).pipe(
       tap((resp: any) => {
         console.log('REFRESH TOKEN =>', resp);
-        this.SaveStorage(resp.data);
+        this.SaveStorage(resp);
       }),
       map((resp) => true)
       // catchError(err => of(false))
@@ -65,11 +65,8 @@ export class UsuarioService {
 
   SaveStorage(json: LoginRespJson) {
     console.log('Save STORAGE =>', json);
-    // console.log('JSON => ', json);
-    const tokenData = JSON.parse(atob(json.token!.split('.')[1]));
-    // console.log('USUARIO => ', json.data);
-
-    let oldToken = localStorage.getItem('token');
+    console.log('JSON => ', json);
+    console.log('USUARIO => ', json.data);
     
     localStorage.setItem('token', json.token);
     
@@ -91,11 +88,11 @@ export class UsuarioService {
     // console.log('log-data =>', formdata);
     // console.log(formdata);
     // localStorage.setItem('username', formdata)
-    const url = this.API_URL + `/token/login`;
+    const url = this.API_URL + `/login_check`;
     return this.http.post(url, formdata).pipe(
       tap((resp: any) => {
         // console.log('RESPUESTA =>', resp);
-        this.SaveStorage(resp.data);
+        this.SaveStorage(resp);
       })
     );
   }
@@ -107,7 +104,6 @@ export class UsuarioService {
 
   verificarCaducudadToken(): void {
     let token = localStorage.getItem('token')!;
-
     if (token) {
       let payload = JSON.parse(atob(token!.split('.')[1]));
 

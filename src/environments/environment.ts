@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   dev: false,
   API_URL: null,
+  STORAGE_URL: '',
   AVATAR_URL: '../../../../../assets/img/img_avatar.png',
 
   // production: false,

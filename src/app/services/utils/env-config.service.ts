@@ -24,6 +24,9 @@ export class EnvConfigService {
   getConfig(): any {
     return this.config;
   }
+  get storageUrl(): string {
+    return this.config ? this.config.STORAGE_URL : '';
+  }
 
   isAllReady(): boolean {
     console.log('config => ', this.config);
@@ -48,6 +51,8 @@ export class EnvConfigService {
           this.setConfig(config);
           environment.API_URL = this.apiUrl;
           envProd.environment.API_URL = this.apiUrl;
+          environment.STORAGE_URL = this.storageUrl;
+          envProd.environment.STORAGE_URL = this.storageUrl;
           console.log('envs =>');
           console.log(environment.API_URL);
           console.log(envProd.environment.API_URL);
