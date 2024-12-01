@@ -11,7 +11,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { RippleModule } from 'primeng/ripple';
 import { RouterModule } from '@angular/router';
 import { AppTopBarComponent } from './shared/topbar/app.topbar.component';
-import { AppConfigModule } from './config/config.module';
+
 import { AppLayoutComponent } from './app.layout.component';
 import { AppMenuComponent } from './shared/menu/app.menu.component';
 import { AppFooterComponent } from './shared/footer/app.footer.component';
@@ -28,31 +28,30 @@ import { CdkDrag } from '@angular/cdk/drag-drop';
 
 @NgModule({
     imports: [
-        BrowserModule,
-        FormsModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        InputTextModule,
-        SidebarModule,
-        BadgeModule,
-        RadioButtonModule,
-        InputSwitchModule,
-        RippleModule,
-        RouterModule,
-        AppConfigModule,
-        PanelMenuModule,
-        MenuModule,
-        ButtonModule,
-        PrimeNgModule,
-        CdkDrag,
-        AppMenuitemComponent,
-        AppTopBarComponent,
-        AppFooterComponent,
-        AppMenuComponent,
-        AppSidebarComponent,
-        AppLayoutComponent,
-        BreadcrumbsComponent,
-    ],
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    InputTextModule,
+    SidebarModule,
+    BadgeModule,
+    RadioButtonModule,
+    InputSwitchModule,
+    RippleModule,
+    RouterModule,
+    PanelMenuModule,
+    MenuModule,
+    ButtonModule,
+    PrimeNgModule,
+    CdkDrag,
+    AppMenuitemComponent,
+    AppTopBarComponent,
+    AppFooterComponent,
+    AppMenuComponent,
+    AppSidebarComponent,
+    AppLayoutComponent,
+    BreadcrumbsComponent,
+],
     exports: [AppLayoutComponent],
     providers: [AppConfigComponent],
 })
