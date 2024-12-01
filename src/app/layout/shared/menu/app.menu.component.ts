@@ -13,14 +13,19 @@ import { ContextService } from 'src/app/services/utils/context.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AppMenuitemComponent } from './app.menuitem.component';
 
-
 @Component({
-    selector: 'app-menu',
-    templateUrl: './app.menu.component.html',
-    standalone: true,
-    imports: [
-    AppMenuitemComponent
-],
+  selector: 'app-menu',
+  templateUrl: './app.menu.component.html',
+  standalone: true,
+  imports: [AppMenuitemComponent],
+  styles: [
+    `
+      .layout-menu {
+        background-color: #7283b0;
+        color: #ffffff;
+      }
+    `,
+  ],
 })
 export class AppMenuComponent implements OnInit, OnDestroy {
   model: any[] = [];
@@ -56,6 +61,19 @@ export class AppMenuComponent implements OnInit, OnDestroy {
   rootUrl: string = window.location.origin + '/#';
 
   ngOnInit() {
+    this.model = [
+      {
+        label: `Bienvenido ${this.usuario.nombre} ${this.usuario.apellido1} ${this.usuario.apellido2}`,
+        items: [
+          {
+            label: 'Busqueda Reducida',
+            icon: 'pi pi-search',
+            routerLink: ['/bus-reducida'],
+            tooltip: 'Busqueda Reducida',
+          },
+        ],
+      },
+    ];
   }
 
   ngOnDestroy() {

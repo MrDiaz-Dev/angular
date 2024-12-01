@@ -1,4 +1,10 @@
-import { Component, ElementRef, ViewChild, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { LayoutService } from '../../service/app.layout.service';
 import { AppConfigComponent } from '../../config/app.config.component';
@@ -8,18 +14,34 @@ import { TooltipModule } from 'primeng/tooltip';
 import { RouterLink } from '@angular/router';
 
 @Component({
-    selector: 'app-topbar',
-    templateUrl: './app.topbar.component.html',
-    standalone: true,
-    imports: [
-        RouterLink,
-        TooltipModule,
-        NgClass,
-    ],
+  selector: 'app-topbar',
+  templateUrl: './app.topbar.component.html',
+  standalone: true,
+  imports: [RouterLink, TooltipModule, NgClass],
+  styles: [
+    `
+      * {
+        color: #ffffff;
+        background-color: #7283b0;
+      }
+
+      .layout-topbar-menu-mobile-active {
+        background-color: #7283b0;
+      }
+
+      .layout-topbar .layout-topbar-button:hover {
+        color: #ffffff;
+        background-color: #505d7d;
+        
+        i, span {
+          background-color: #505d7d;
+        }
+      }
+    `,
+  ],
 })
 export class AppTopBarComponent implements OnInit {
-
-  private readonly configComponent = inject(AppConfigComponent)
+  private readonly configComponent = inject(AppConfigComponent);
 
   items!: MenuItem[];
 
@@ -31,14 +53,13 @@ export class AppTopBarComponent implements OnInit {
 
   constructor(public layoutService: LayoutService) {}
 
-  private readonly usuarioService = inject(UsuarioService)
+  private readonly usuarioService = inject(UsuarioService);
 
   public userImage: any;
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onConfigButtonClick() {
-    this.configComponent.onConfigButtonClick()
+    this.configComponent.onConfigButtonClick();
   }
 }
