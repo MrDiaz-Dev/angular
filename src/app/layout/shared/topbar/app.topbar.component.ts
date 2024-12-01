@@ -3,10 +3,19 @@ import { MenuItem } from 'primeng/api';
 import { LayoutService } from '../../service/app.layout.service';
 import { AppConfigComponent } from '../../config/app.config.component';
 import { UsuarioService } from 'src/app/services/auth/usuario.service';
+import { NgClass } from '@angular/common';
+import { TooltipModule } from 'primeng/tooltip';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-topbar',
-  templateUrl: './app.topbar.component.html',
+    selector: 'app-topbar',
+    templateUrl: './app.topbar.component.html',
+    standalone: true,
+    imports: [
+        RouterLink,
+        TooltipModule,
+        NgClass,
+    ],
 })
 export class AppTopBarComponent implements OnInit {
 

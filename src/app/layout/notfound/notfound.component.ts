@@ -1,10 +1,12 @@
 import { Location } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-notfound',
     templateUrl: './notfound.component.html',
+    standalone: true,
+    imports: [RouterLink],
 })
 export class NotfoundComponent implements OnInit{ 
   private readonly actRoute = inject(ActivatedRoute);

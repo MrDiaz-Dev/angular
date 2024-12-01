@@ -12,20 +12,18 @@ import { DashboardsRoutingModule } from './dashboard-routing.module';
 import { PrimeNgModule } from '../shared/prime-ng/prime-ng.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ChartModule,
-    MenuModule,
-    TableModule,
-    StyleClassModule,
-    PanelMenuModule,
-    ButtonModule,
-    DashboardsRoutingModule,
-    PrimeNgModule,
-],
-  declarations: [
-    DashboardComponent,
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ChartModule,
+        MenuModule,
+        TableModule,
+        StyleClassModule,
+        PanelMenuModule,
+        ButtonModule,
+        DashboardsRoutingModule,
+        PrimeNgModule,
+        DashboardComponent,
+    ],
 })
 export class DashboardModule {}

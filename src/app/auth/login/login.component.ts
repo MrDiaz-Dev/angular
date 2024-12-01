@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import {
-    UntypedFormBuilder,
-    UntypedFormGroup,
-    Validators,
-} from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomMessageService } from 'src/app/services/utils/message.service';
 import { UsuarioService } from 'src/app/services/auth/usuario.service';
 
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { AppConfigComponent } from 'src/app/layout/config/app.config.component';
+import { RippleModule } from 'primeng/ripple';
+import { ButtonModule } from 'primeng/button';
+import { PasswordModule } from 'primeng/password';
+import { InputTextModule } from 'primeng/inputtext';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styles: [
-    `
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styles: [
+        `
       :host ::ng-deep .pi-eye,
       :host ::ng-deep .pi-eye-slash {
         transform: scale(1.6);
@@ -23,7 +24,17 @@ import { AppConfigComponent } from 'src/app/layout/config/app.config.component';
         color: var(--primary-color) !important;
       }
     `,
-  ],
+    ],
+    standalone: true,
+    imports: [
+        NgIf,
+        FormsModule,
+        ReactiveFormsModule,
+        InputTextModule,
+        PasswordModule,
+        ButtonModule,
+        RippleModule,
+    ],
 })
 export class LoginComponent implements OnInit {
   // valCheck: string[] = ['remember'];

@@ -11,10 +11,18 @@ import * as XLSX from 'xlsx';
 import { SubscriptionLoggable } from 'rxjs/internal/testing/SubscriptionLoggable';
 import { ContextService } from 'src/app/services/utils/context.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { AppMenuitemComponent } from './app.menuitem.component';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './app.menu.component.html',
+    selector: 'app-menu',
+    templateUrl: './app.menu.component.html',
+    standalone: true,
+    imports: [
+        NgIf,
+        NgFor,
+        AppMenuitemComponent,
+    ],
 })
 export class AppMenuComponent implements OnInit, OnDestroy {
   model: any[] = [];

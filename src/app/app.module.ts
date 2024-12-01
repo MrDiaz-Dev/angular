@@ -26,29 +26,30 @@ export function initializeApp(configService: EnvConfigService) {
 }
 
 @NgModule({
-  declarations: [AppComponent, NotfoundComponent],
-  imports: [
-    AppRoutingModule,
-    AppLayoutModule,
-    HttpClientModule,
-    PrimeNgModule,
-    BrowserAnimationsModule,
-  ],
-  providers: [
-    EnvConfigService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeApp,
-      deps: [EnvConfigService],
-      multi: true
-    },
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptorService,
-      multi: true,
-    },
-  ],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [
+        AppRoutingModule,
+        AppLayoutModule,
+        HttpClientModule,
+        PrimeNgModule,
+        BrowserAnimationsModule,
+        NotfoundComponent,
+    ],
+    providers: [
+        EnvConfigService,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initializeApp,
+            deps: [EnvConfigService],
+            multi: true
+        },
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptorService,
+            multi: true,
+        },
+    ],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

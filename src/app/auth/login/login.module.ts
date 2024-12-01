@@ -21,9 +21,9 @@ import { PrimeNgModule } from 'src/app/layout/shared/prime-ng/prime-ng.module';
         PasswordModule,
         FormsModule,
         ReactiveFormsModule,
-        PrimeNgModule
+        PrimeNgModule,
+        LoginComponent
     ],
-    declarations: [LoginComponent],
     providers: [AppConfigComponent]
 })
 export class LoginModule { }

@@ -1,13 +1,21 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { Subscription, filter } from 'rxjs';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { UsuarioService } from 'src/app/services/auth/usuario.service';
 import { ContextService } from 'src/app/services/utils/context.service';
+import { NgFor, NgIf, NgStyle } from '@angular/common';
 
 @Component({
-  templateUrl: './dashboard.component.html',
+    templateUrl: './dashboard.component.html',
+    standalone: true,
+    imports: [
+        NgFor,
+        NgIf,
+        RouterLink,
+        NgStyle,
+    ],
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   subscription!: Subscription;

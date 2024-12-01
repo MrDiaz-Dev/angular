@@ -1,13 +1,26 @@
 import { Component, OnDestroy, Renderer2, ViewChild } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
 import { LayoutService } from './service/app.layout.service';
 import { AppTopBarComponent } from './shared/topbar/app.topbar.component';
 import { AppSidebarComponent } from './shared/sidebar/app.sidebar.component';
+import { AppConfigComponent } from './config/app.config.component';
+import { AppFooterComponent } from './shared/footer/app.footer.component';
+import { NgIf, NgClass } from '@angular/common';
 
 @Component({
-  selector: 'app-layout',
-  templateUrl: './app.layout.component.html',
+    selector: 'app-layout',
+    templateUrl: './app.layout.component.html',
+    standalone: true,
+    imports: [
+        NgIf,
+        NgClass,
+        AppTopBarComponent,
+        AppSidebarComponent,
+        RouterOutlet,
+        AppFooterComponent,
+        AppConfigComponent,
+    ],
 })
 export class AppLayoutComponent implements OnDestroy {
   overlayMenuOpenSubscription: Subscription;
