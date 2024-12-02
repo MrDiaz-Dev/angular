@@ -5,8 +5,18 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './bus-reducida.component.html',
-  styleUrl: './bus-reducida.component.scss'
+  styleUrl: './bus-reducida.component.scss',
 })
 export class BusReducidaComponent {
+  constructor() {}
 
+  titulo = 'Busqueda reducida';
+
+  ngOnInit() {
+    console.log('Busqueda reducida');
+  }
+
+  ngOnDestroy() {
+    console.log('Busqueda reducida destruido');
+  }
 }

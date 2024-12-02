@@ -63,12 +63,12 @@ export class AppMenuComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.model = [
       {
-        label: `Bienvenido ${this.usuario.nombre} ${this.usuario.apellido1} ${this.usuario.apellido2}`,
+        label: `Bienvenido ${this.usuario.nombre ?? ''} ${this.usuario.apellido1 ?? ''} ${this.usuario.apellido2 ?? ''}`,
         items: [
           {
             label: 'Busqueda Reducida',
             icon: 'pi pi-search',
-            routerLink: ['/bus-reducida'],
+            routerLink: ['/busqueda/bus-reducida'],
             tooltip: 'Busqueda Reducida',
           },
         ],
