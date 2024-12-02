@@ -20,6 +20,13 @@ import { NotfoundComponent } from './layout/notfound/notfound.component';
                   (m) => m.DashboardModule
                 ),
             },
+            {
+              path: 'busqueda',
+              loadChildren: () =>
+                import('./layout/modules/busqueda/busqueda.module').then(
+                  (m) => m.BusquedaModule
+                ),
+            }
           ],
         },
         {
