@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/inputtext';
 import { SidebarModule } from 'primeng/sidebar';
@@ -26,26 +26,33 @@ import { BreadcrumbsComponent } from './shared/breadcrumbs/breadcrumbs.component
 
 import { CdkDrag } from '@angular/cdk/drag-drop';
 
-@NgModule({ exports: [AppLayoutComponent], imports: [BrowserModule,
-        FormsModule,
-        BrowserAnimationsModule,
-        InputTextModule,
-        SidebarModule,
-        BadgeModule,
-        RadioButtonModule,
-        InputSwitchModule,
-        RippleModule,
-        RouterModule,
-        PanelMenuModule,
-        MenuModule,
-        ButtonModule,
-        PrimeNgModule,
-        CdkDrag,
-        AppMenuitemComponent,
-        AppTopBarComponent,
-        AppFooterComponent,
-        AppMenuComponent,
-        AppSidebarComponent,
-        AppLayoutComponent,
-        BreadcrumbsComponent], providers: [AppConfigComponent, provideHttpClient(withInterceptorsFromDi())] })
+@NgModule({
+    imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    InputTextModule,
+    SidebarModule,
+    BadgeModule,
+    RadioButtonModule,
+    InputSwitchModule,
+    RippleModule,
+    RouterModule,
+    PanelMenuModule,
+    MenuModule,
+    ButtonModule,
+    PrimeNgModule,
+    CdkDrag,
+    AppMenuitemComponent,
+    AppTopBarComponent,
+    AppFooterComponent,
+    AppMenuComponent,
+    AppSidebarComponent,
+    AppLayoutComponent,
+    BreadcrumbsComponent,
+],
+    exports: [AppLayoutComponent],
+    providers: [AppConfigComponent],
+})
 export class AppLayoutModule {}
