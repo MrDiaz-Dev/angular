@@ -48,7 +48,7 @@ export class BusReducidaComponent {
   }
 
   buscar() {
-    this.router.navigate(['/busqueda', this.genURLParams()]);
+    this.router.navigateByUrl(`/busqueda/bus-reducida-listado?${this.genURLParams()}`);
   }
 
   ngOnDestroy() {
