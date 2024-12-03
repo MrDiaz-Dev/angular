@@ -1,2 +1,63 @@
-<h3>{{ titulo }}</h3>
-<hr>
+<form [formGroup]="camposDeBusqueda" (ngSubmit)="buscar()" autocomplete="off">
+  <p-toolbar styleClass="toolbar-sin-bordes">
+    <ng-template pTemplate="left">
+      <div class="my-2">
+        <h2 class="mb-0">{{ titulo }}</h2>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="right">
+      <button
+        pButton
+        pRipple
+        icon="pi pi-search"
+        pTooltip="Realizar búsqueda"
+        ptooltipPosition="left"
+        type="submit"
+        class="p-button-rounded p-button-success ml-1"
+      ></button>
+    </ng-template>
+  </p-toolbar>
+  <hr />
+  <div class="grid">
+    <div class="flex flex-column gap-2 col-12 md:col-6 xl:col-4">
+      <label for="nombre"><b>Nombre</b></label>
+      <input
+        pInputText
+        id="nombre"
+        formControlName="nombre"
+        aria-describedby="nombre-help"
+        placeholder="Nombre"
+      />
+      <small id="nombre-help">
+        Nombre de la persona que se desea buscar.
+      </small>
+    </div>
+    <div class="flex flex-column gap-2 col-12 md:col-6 xl:col-4">
+      <label for="apellido1"><b>Primer apellido</b></label>
+      <input
+        pInputText
+        id="apellido1"
+        formControlName="apellido1"
+        aria-describedby="apellido1-help"
+        placeholder="Nombre"
+      />
+      <small id="apellido1-help">
+        Pirmer apellido de la persona que se desea buscar.
+      </small>
+    </div>
+    <div class="flex flex-column gap-2 col-12 md:col-6 xl:col-4">
+      <label for="apellido2"><b>Segundo apellido</b></label>
+      <input
+        pInputText
+        id="apellido2"
+        formControlName="apellido2"
+        aria-describedby="apellido2-help"
+        placeholder="Nombre"
+      />
+      <small id="apellido2-help">
+        Pirmer apellido de la persona que se desea buscar.
+      </small>
+    </div>
+  </div>
+</form>
