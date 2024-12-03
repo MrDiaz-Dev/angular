@@ -1,0 +1,4 @@
+{ 
+  "API_URL": "https://cnb-client-api.test.systemctl-service.com/api",
+  "STORAGE_URL": "https://cnb-client-api.test.systemctl-service.com/storage/default/"
+}
