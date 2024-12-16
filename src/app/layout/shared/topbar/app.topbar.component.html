@@ -1,6 +1,11 @@
 <!-- <div class="layout-topbar" style="z-index: 99999;"> -->
 <div class="layout-topbar">
-  <a class="layout-topbar-logo" style="width: auto;" routerLink="" pTooltip="Navigar al inicio">
+  <a
+    class="layout-topbar-logo"
+    style="width: auto"
+    routerLink=""
+    pTooltip="Navigar al inicio"
+  >
     <img
       src="../../../../favicon.ico"
       alt="Convatec Tools Logo"
@@ -19,13 +24,16 @@
     <i class="pi pi-bars"></i>
   </button>
 
-  <button
-    class="p-link layout-menu-button layout-topbar-button"
-    routerLink=""
-    pTooltip="Navigar al inicio"
-  >
-    <i class="pi pi-home"></i>
-  </button>
+  @if (mediaQuery == "md" || mediaQuery == "lg" || mediaQuery == "xl") {
+    <button
+      class="p-link layout-menu-button layout-topbar-button"
+      routerLink=""
+      pTooltip="Navigar al inicio"
+    >
+      <i class="pi pi-home"></i>
+    </button>
+  }
+
   <!-- <button
     #menubutton
     class="nav-btn p-link layout-menu-button layout-topbar-button"
@@ -75,7 +83,7 @@
     class="layout-topbar-menu"
     [ngClass]="{
       'layout-topbar-menu-mobile-active':
-        layoutService.state.profileSidebarVisible
+        layoutService.state.profileSidebarVisible,
     }"
   >
     <!-- <button class="p-link layout-topbar-button">

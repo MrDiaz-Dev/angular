@@ -12,6 +12,7 @@ import { UsuarioService } from 'src/app/services/auth/usuario.service';
 import { NgClass } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';
 import { RouterLink } from '@angular/router';
+import { MediaObserver, MediaChange } from '@angular/flex-layout';
 
 @Component({
   selector: 'app-topbar',
@@ -32,8 +33,9 @@ import { RouterLink } from '@angular/router';
       .layout-topbar .layout-topbar-button:hover {
         color: #ffffff;
         background-color: #505d7d;
-        
-        i, span {
+
+        i,
+        span {
           background-color: #505d7d;
         }
       }
@@ -55,9 +57,30 @@ export class AppTopBarComponent implements OnInit {
 
   private readonly usuarioService = inject(UsuarioService);
 
+  private readonly mediaObserver = inject(MediaObserver);
+
   public userImage: any;
 
-  ngOnInit(): void {}
+  mediaQuery: string = 'xl';
+
+  ngOnInit(): void {
+    this.mediaObserver.asObservable().subscribe((changes: MediaChange[]) => {
+      changes.forEach((change: MediaChange) => {
+        if (change.mqAlias === 'xs') {
+          this.mediaQuery = 'sm';
+        } else if (change.mqAlias === 'sm') {
+          this.mediaQuery = 'sm';
+        } else if (change.mqAlias === 'md') {
+          this.mediaQuery = 'md';
+        } else if (change.mqAlias === 'lg') {
+          this.mediaQuery = 'lg';
+        } else if (change.mqAlias === 'xl') {
+          this.mediaQuery = 'xl';
+        }
+      });
+      // console.log('MediaQuery: ', this.mediaQuery);
+    });
+  }
 
   onConfigButtonClick() {
     this.configComponent.onConfigButtonClick();

@@ -17,6 +17,7 @@
     "@angular/common": "^17.3.12",
     "@angular/compiler": "^17.3.12",
     "@angular/core": "^17.3.12",
+    "@angular/flex-layout": "^15.0.0-beta.42",
     "@angular/forms": "^17.3.12",
     "@angular/material": "^16.2.5",
     "@angular/platform-browser": "^17.3.12",
@@ -69,6 +70,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "prettier": "^3.2.5",
     "typescript": "~5.2.2"
   }
 }
