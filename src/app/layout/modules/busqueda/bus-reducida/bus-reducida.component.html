@@ -7,18 +7,34 @@
     </ng-template>
 
     <ng-template pTemplate="right">
-      <button
-        pButton
-        pRipple
+      <p-button
         icon="pi pi-search"
+        label="Buscar"
         pTooltip="Realizar búsqueda"
         ptooltipPosition="left"
         type="submit"
-        class="p-button-rounded p-button-success ml-1"
-      ></button>
+        styleClass="p-button-rounded p-button-success ml-1"
+      ></p-button>
     </ng-template>
   </p-toolbar>
   <hr />
+  <p-toolbar styleClass="toolbar-sin-bordes">
+    <ng-template pTemplate="left">
+      <div class="my-2">
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="right">
+      <p-button
+        icon="pi pi-trash"
+        label="Limpiar"
+        pTooltip="Limpiar campos del formulario"
+        ptooltipPosition="left"
+        styleClass="p-button-rounded p-button-secondary p-button-outlined ml-1"
+        (click)="limpiar()"
+      ></p-button>
+    </ng-template>
+  </p-toolbar>
   <div class="grid">
     <div class="flex flex-column gap-2 col-12 md:col-6 xl:col-4">
       <label for="nombre"><b>Nombre</b></label>

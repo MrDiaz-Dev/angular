@@ -37,6 +37,17 @@ export class BusReducidaComponent {
 
   ngOnInit() {
     console.warn('Busqueda reducida');
+    const busquedaReducida = JSON.parse(
+      sessionStorage.getItem('busquedaReducida')
+    );
+    if (busquedaReducida) {
+      this.camposDeBusqueda.patchValue(busquedaReducida);
+    }
+  }
+
+  limpiar() {
+    this.camposDeBusqueda.reset();
+    sessionStorage.removeItem('busquedaReducida');
   }
 
   /**
@@ -59,6 +70,7 @@ export class BusReducidaComponent {
   }
 
   buscar() {
+    sessionStorage.setItem('busquedaReducida', JSON.stringify(this.camposDeBusqueda.value));
     this.router.navigateByUrl(
       `/busqueda/bus-reducida-listado?${this.genURLParams()}`
     );
