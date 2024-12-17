@@ -51,6 +51,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { GridstackModule } from 'gridstack/dist/angular';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { HighlightJsModule } from 'ngx-highlight-js';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   declarations: [],
@@ -113,6 +114,7 @@ import { HighlightJsModule } from 'ngx-highlight-js';
     ProgressBarModule,
     ContextMenuModule,
     HighlightJsModule,
+    TooltipModule,
   ],
   providers: [MessageService, ConfirmationService, MessagesModule],
 })

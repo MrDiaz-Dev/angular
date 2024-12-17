@@ -28,7 +28,7 @@ export class ContextService {
     router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event) => {
-        console.log('event', event);
+        // console.log('event', event);
         // detectar si el primer segmento de la url es 'external-data'
         let url = event['url'];
         let urlSegments = url.split('/');

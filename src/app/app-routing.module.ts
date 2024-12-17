@@ -26,6 +26,13 @@ import { NotfoundComponent } from './layout/notfound/notfound.component';
                 import('./layout/modules/busqueda/busqueda.module').then(
                   (m) => m.BusquedaModule
                 ),
+            },
+            {
+              path: 'personal',
+              loadChildren: () =>
+                import('./layout/modules/personal/personal.module').then(
+                  (m) => m.PersonalModule
+                ),
             }
           ],
         },

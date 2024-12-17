@@ -159,6 +159,8 @@ export class BusReducidaListadoComponent {
   }
 
   navegarAlDetalle(personal: DatosPersonales) {
+    console.log('urlParams => ', this.urlParams);
+    sessionStorage.setItem('previousPersonalPage', '/busqueda/bus-reducida-listado?' + this.urlParams);
     this.router.navigate(['personal/datos-personales', personal.id]);
   }
 
