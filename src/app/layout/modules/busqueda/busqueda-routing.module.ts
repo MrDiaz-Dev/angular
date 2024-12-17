@@ -9,6 +9,13 @@ const routes: Routes = [
         (m) => m.BusReducidaComponent
       ),
   },
+  {
+    path: 'bus-reducida-listado',
+    loadComponent: () =>
+      import('./bus-reducida-listado/bus-reducida-listado.component').then(
+        (m) => m.BusReducidaListadoComponent
+      ),
+  }
 ];
 
 @NgModule({
