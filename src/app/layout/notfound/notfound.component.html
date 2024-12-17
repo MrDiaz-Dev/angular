@@ -9,15 +9,16 @@
   >
     <i class="pi pi-exclamation-circle" style="font-size: 5rem;"></i>
     <br>
-    <span class="text-blue-500 font-bold text-3xl">404</span>
+    <span class="text-black-500 font-bold text-6xl">404</span>
     <h1 class="text-900 font-bold text-3xl lg:text-5xl mb-2">
       Esta pagina no existe
     </h1>
     <div class="text-600 mb-5">
-      No hay contenido asociado a la ruta <b>{{ url }}</b>
+      No hay contenido asociado a la ruta <b style="color: black;">{{ url }}</b>
     </div>
     <a
       (click)="back()"
+      style="cursor: pointer;"
       class="w-full flex align-items-center py-5 border-300 border-bottom-1"
     >
       <span
