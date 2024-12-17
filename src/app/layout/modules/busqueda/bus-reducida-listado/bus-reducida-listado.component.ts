@@ -66,8 +66,7 @@ export class BusReducidaListadoComponent {
       header: '2do. Apellido',
       sorteable: true,
     },
-    { field: 'dniNie', subField: null, header: 'DNI / NIE', sorteable: true },
-    { field: 'dniNie', subField: null, header: 'DNI / NIE', sorteable: false },
+    { field: 'dniNie', subField: null, header: 'DNI / NIE' },
     { field: '', header: 'Acciones' },
   ];
 
@@ -128,14 +127,12 @@ export class BusReducidaListadoComponent {
         .set('itemsPerPage', this.rows.toString());
 
       if (event.sortField) {
-        additionalParams = additionalParams.set('order_name', event.sortField);
-
         if (event.sortOrder == 1) {
-          additionalParams = additionalParams.set('order_type', 'ASC');
+          additionalParams = additionalParams.set(`order[${event.sortField}]`, 'asc');
         }
 
         if (event.sortOrder == -1) {
-          additionalParams = additionalParams.set('order_type', 'DESC');
+          additionalParams = additionalParams.set(`order[${event.sortField}]`, 'desc');
         }
       }
     }
@@ -156,7 +153,7 @@ export class BusReducidaListadoComponent {
    * En caso de error, se registra el error en la consola y se muestra un mensaje de error al usuario.
    */
   cargarDatos() {
-    this.datosPersonalesService.paginated(this.urlParams).subscribe(
+    this.datosPersonalesService.paginated(this.url).subscribe(
       (datos) => {
         this.data = datos['hydra:member'];
         this.totalItems = this.data.length;
