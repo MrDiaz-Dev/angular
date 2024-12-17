@@ -40,7 +40,7 @@ export class UsuarioService {
 
   refreshToken(): Observable<boolean> | null {
     if (!this.API_URL) return null;
-    const token = localStorage.getItem('token') || '';
+    const refresh_token = localStorage.getItem('refresh_token') || '';
     const url = this.API_URL + `/token/refresh`;
 
     // console.warn('INTENTANDO REFRESCAR TOKEN');
@@ -49,14 +49,12 @@ export class UsuarioService {
     // selectedUser$ = this.user$.asObservable();
 
     const refresh = {
-      data: {
-        token: token,
-      },
+      refresh_token: refresh_token,
+      aplicacion: 'personal',
     };
     return this.http.post(url, refresh).pipe(
       tap((resp: any) => {
-        console.log('REFRESH TOKEN =>', resp);
-        this.SaveStorage(resp);
+        this.guardarStorage(resp.token, resp.refresh_token, resp.data);
       }),
       map((resp) => true)
       // catchError(err => of(false))
@@ -71,6 +69,12 @@ export class UsuarioService {
     localStorage.setItem('token', json.token);
     
     localStorage.setItem('usuario', JSON.stringify(json.data));
+  }
+
+  guardarStorage(token: string, refresh_token: string, usuario: Usuario) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('refresh_token', refresh_token);
+    localStorage.setItem('usuario', JSON.stringify(usuario));
   }
 
   // setUserData() {
@@ -91,8 +95,7 @@ export class UsuarioService {
     const url = this.API_URL + `/login_check`;
     return this.http.post(url, formdata).pipe(
       tap((resp: any) => {
-        // console.log('RESPUESTA =>', resp);
-        this.SaveStorage(resp);
+        this.guardarStorage(resp.token, resp.refresh_token, resp.data);
       })
     );
   }
