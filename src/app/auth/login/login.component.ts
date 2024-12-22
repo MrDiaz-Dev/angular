@@ -17,6 +17,7 @@ import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { PrimeNgModule } from 'src/app/layout/shared/prime-ng/prime-ng.module';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -54,6 +55,7 @@ export class LoginComponent implements OnInit {
     private usuarioService: UsuarioService,
     private messageService: CustomMessageService,
     private appConfigComponent: AppConfigComponent,
+    private location: Location,
   ) {}
 
   public loading: boolean = false;
@@ -93,7 +95,15 @@ export class LoginComponent implements OnInit {
               'You have entered to the system successfully',
             );
             localStorage.setItem('username', `${this.myForm.value.username}`);
-            this.router.navigateByUrl('/');
+            
+            // verificar hay existe historial de navegación
+            if (history.length > 1) {
+              this.location.back();
+              // borrar el forward del historial
+              history.forward();
+            } else {
+              this.router.navigate(['/']);
+            }
           },
           (error) => {
             console.log(error);

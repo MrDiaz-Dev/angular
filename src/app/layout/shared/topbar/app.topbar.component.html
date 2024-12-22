@@ -115,7 +115,7 @@
 
     <button
       class="p-link layout-topbar-button"
-      [routerLink]="['/auth/login']"
+      (click)="logout()"
       pTooltip="Logout"
     >
       <i class="pi pi-external-link"></i>

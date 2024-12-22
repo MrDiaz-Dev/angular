@@ -85,4 +85,8 @@ export class AppTopBarComponent implements OnInit {
   onConfigButtonClick() {
     this.configComponent.onConfigButtonClick();
   }
+
+  logout() {
+    this.usuarioService.logout();
+  }
 }
