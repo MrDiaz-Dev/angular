@@ -88,6 +88,7 @@ export class BusReducidaListadoComponent {
   }
 
   back() {
+    sessionStorage.setItem('busquedaGuardada', this.urlParams);
     this.router.navigate(['/busqueda/bus-reducida']);
   }
 

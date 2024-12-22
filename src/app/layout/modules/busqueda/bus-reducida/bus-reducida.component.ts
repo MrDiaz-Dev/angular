@@ -17,14 +17,14 @@ import { CustomMessageService } from 'src/app/services/utils/message.service';
   templateUrl: './bus-reducida.component.html',
   styleUrl: './bus-reducida.component.scss',
 })
-export class BusReducidaComponent implements OnInit{
+export class BusReducidaComponent implements OnInit {
   constructor() {}
 
   // region servicios y otras dependencias
   fb = inject(UntypedFormBuilder);
   router = inject(Router);
   messageService = inject(CustomMessageService);
-  title = inject(Title)
+  title = inject(Title);
 
   // region variables
   titulo = 'Busqueda reducida';
@@ -40,17 +40,30 @@ export class BusReducidaComponent implements OnInit{
   ngOnInit() {
     console.warn('Busqueda reducida');
     this.title.setTitle('RRHH - Busqueda reducida');
-    const busquedaReducida = JSON.parse(
-      sessionStorage.getItem('busquedaReducida')
-    );
-    if (busquedaReducida) {
-      this.camposDeBusqueda.patchValue(busquedaReducida);
+    this.recuperarBusquedaPrevia();
+  }
+
+  recuperarBusquedaPrevia() {
+    const busquedaGuardada = sessionStorage.getItem('busquedaGuardada');
+    sessionStorage.removeItem('busquedaGuardada');
+    if (busquedaGuardada) {
+      console.log('busquedaGuardada', busquedaGuardada);
+      // busquedaGuardada es un string de url params, lo convertimos a un objeto
+      let busquedaGuardadaOBJ = {};
+      busquedaGuardada.split('&').forEach((param) => {
+        const [key, value] = param.split('=');
+        busquedaGuardadaOBJ[key] = value;
+      });
+
+      console.log(`busquedaGuardada.split('&')`, busquedaGuardada.split('&'));
+      console.log(`busquedaGuardadaOBJ`, busquedaGuardadaOBJ);
+
+      this.camposDeBusqueda.patchValue(busquedaGuardadaOBJ);
     }
   }
 
   limpiar() {
     this.camposDeBusqueda.reset();
-    sessionStorage.removeItem('busquedaReducida');
   }
 
   /**
@@ -73,9 +86,8 @@ export class BusReducidaComponent implements OnInit{
   }
 
   buscar() {
-    sessionStorage.setItem('busquedaReducida', JSON.stringify(this.camposDeBusqueda.value));
     this.router.navigateByUrl(
-      `/busqueda/bus-reducida-listado?${this.genURLParams()}`
+      `/busqueda/bus-reducida-listado?${this.genURLParams()}`,
     );
   }
 
