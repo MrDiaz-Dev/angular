@@ -44,10 +44,10 @@ export class BusReducidaComponent implements OnInit {
   }
 
   recuperarBusquedaPrevia() {
-    const busquedaGuardada = sessionStorage.getItem('busquedaGuardada');
-    sessionStorage.removeItem('busquedaGuardada');
+    const busquedaGuardada = sessionStorage.getItem('busquedaReducida');
+    sessionStorage.removeItem('busquedaReducida');
     if (busquedaGuardada) {
-      console.log('busquedaGuardada', busquedaGuardada);
+      console.log('busquedaReducida', busquedaGuardada);
       // busquedaGuardada es un string de url params, lo convertimos a un objeto
       let busquedaGuardadaOBJ = {};
       busquedaGuardada.split('&').forEach((param) => {
@@ -86,6 +86,7 @@ export class BusReducidaComponent implements OnInit {
   }
 
   buscar() {
+    sessionStorage.setItem('busquedaReducida', this.genURLParams());
     this.router.navigateByUrl(
       `/busqueda/bus-reducida-listado?${this.genURLParams()}`,
     );
