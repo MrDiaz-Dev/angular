@@ -37,5 +37,11 @@ export interface Campo {
 
 export interface PDropdown {
   label: string;
-  value: string;
+  value: any;
+  correo?: string | null;
+  id?: string | number;
+  iri?: string | number;
+  opcion1?: string | number;
+  referencia?: string;
+  description?: string;
 }

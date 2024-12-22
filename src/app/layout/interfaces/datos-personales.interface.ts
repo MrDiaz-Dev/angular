@@ -1,3 +1,5 @@
+import { IdNombre, Pais } from "./entidades.interface";
+
 export interface DatosPersonales {
   id: number;
   tipoIdent: string;
@@ -13,12 +15,7 @@ export interface DatosPersonales {
   cp1: string;
   localidad1: string;
   provincia1: string;
-  direccion2: string;
-  cp2: string;
-  localidad2: string;
-  provincia2: string;
   telefono1: number;
-  telefono2: string;
   emailPersonal: string;
   fotografia: string;
   nss: string;
@@ -28,18 +25,12 @@ export interface DatosPersonales {
   pendienteDesact: string;
   personalCnb: string;
   falta: string;
-  alertaGest: string;
-  idPais: string;
-  idPais2: string;
-  responsables: string[];
+  idPais: string | Pais;
   titulaciones: string[];
   numeroTarjeta: string;
 }
 
 export interface DatosPersonalesResponse {
-  '@context': string;
-  '@id': string;
-  '@type': string;
   'hydra:member': DatosPersonales[];
   'hydra:totalItems': number;
 }

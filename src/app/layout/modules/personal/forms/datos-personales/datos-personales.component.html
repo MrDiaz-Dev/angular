@@ -1,1 +1,505 @@
-<p>datos-personales works!</p>
+<form [formGroup]="form" (ngSubmit)="save(file)" (keyup.enter)="save(file)" autocomplete="off">
+  <div class="grid">
+    <div class="col-12 grid pb-0">
+      <div
+        class="col-12 md:col-4 xl:col-3 pb-0 flex align-items-center justify-content-center"
+      >
+        <div
+          class="flex flex-column justify-content-center mx-4"
+          style="min-height: 230px; min-width: 190px"
+        >
+          <p-fileUpload
+            #file
+            styleClass="p-button-rounded"
+            mode="basic"
+            class="mb-2 center-file-upload"
+            chooseLabel="SELECCIONAR"
+            uploadLabel="Borrar Seleccion"
+            uploadIcon="pi pi-times"
+            accept="image/*"
+            [maxFileSize]="1000000"
+            (onSelect)="onSelect($event)"
+            (click)="clearFile()"
+            pTooltip="Seleccionar imagen"
+            tooltipPosition="top"
+          >
+          </p-fileUpload>
+          <p-image
+            [src]="cargarFotografiaURL()"
+            alt="avatar"
+            class="rounded float-right img-thumbnail img-fluid"
+            [imageStyle]="{
+              width: '100%',
+              maxWidth: '280px',
+              aspectRatio: '1',
+              borderRadius: '10%',
+              objectFit: 'cover',
+              boxShadow: '0 0 5px 0 rgba(0, 0, 0, 0.2)',
+            }"
+            [preview]="true"
+            loading="lazy"
+            [pTooltip]="
+              cargarFotografiaURL() === 'assets/images/notImage.png'
+                ? 'No hay imagen del personal'
+                : 'Ver imagen del personal'
+            "
+          ></p-image>
+          <div class="flex justify-content-center mt-1">
+            <p-button
+              label="Borrar"
+              icon="pi pi-trash"
+              styleClass="p-button-sm p-button-rounded p-button-danger"
+              (click)="borrarImagen()"
+              pTooltip="Borrar imagen"
+              [disabled]="
+                cargarFotografiaURL() === 'assets/images/notImage.png'
+              "
+            ></p-button>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-8 pb-0">
+        <div class="field grid">
+          <label for="falta" class="col-fixed custom-col-fixed-label-2">
+            Faltan Datos
+          </label>
+          <div class="col-fixed custom-col-fixed-input-2">
+            <p-dropdown
+              [options]="selectSN()"
+              formControlName="falta"
+              placeholder="Seleccionar"
+              [showClear]="true"
+              [style]="{ width: '-webkit-fill-available' }"
+            ></p-dropdown>
+          </div>
+        </div>
+        <div class="field grid">
+          <label for="tipoIdent" class="col-fixed custom-col-fixed-label-2">
+            Tipo de documento
+          </label>
+          <div class="col-fixed custom-col-fixed-input-2">
+            <p-dropdown
+              [options]="selectDocumento()"
+              formControlName="tipoIdent"
+              placeholder="Seleccionar"
+              [showClear]="true"
+              [style]="{ width: '-webkit-fill-available' }"
+            ></p-dropdown>
+          </div>
+        </div>
+        <div class="field grid">
+          <label for="dniNie" class="col-fixed custom-col-fixed-label-2">
+            Numero de documento
+          </label>
+          <div class="col-fixed custom-col-fixed-input-2">
+            <input
+              pInputText
+              id="dniNie"
+              formControlName="dniNie"
+              aria-describedby="dniNie-help"
+              placeholder="Numero de documento"
+              autocomplete="off"
+              [style]="{ width: '-webkit-fill-available' }"
+            />
+          </div>
+        </div>
+        <div class="field grid">
+          <label for="fechaFinNie" class="col-fixed custom-col-fixed-label-2">
+            Caducidad NIE
+          </label>
+          <div class="col-fixed custom-col-fixed-input-2">
+            <p-calendar
+              [showIcon]="true"
+              [showClear]="true"
+              [showOnFocus]="false"
+              dateFormat="dd/mm/yy"
+              formControlName="fechaFinNie"
+              [style]="{ width: '-webkit-fill-available' }"
+            ></p-calendar>
+          </div>
+        </div>
+        <div class="field grid">
+          <label for="nombre" class="col-fixed custom-col-fixed-label-2">
+            Nombre
+          </label>
+          <div class="col-fixed custom-col-fixed-input-2">
+            <input
+              pInputText
+              id="nombre"
+              formControlName="nombre"
+              aria-describedby="nombre-help"
+              placeholder="Nombre de la persona"
+              autocomplete="off"
+              [style]="{ width: '-webkit-fill-available' }"
+            />
+          </div>
+        </div>
+        <div class="field grid">
+          <label for="apellido1" class="col-fixed custom-col-fixed-label-2">
+            1er apellido
+          </label>
+          <div class="col-fixed custom-col-fixed-input-2">
+            <input
+              pInputText
+              id="apellido1"
+              formControlName="apellido1"
+              aria-describedby="apellido1-help"
+              placeholder="1er apellido de la persona"
+              autocomplete="off"
+              [style]="{ width: '-webkit-fill-available' }"
+            />
+          </div>
+        </div>
+        <div class="field grid">
+          <label for="apellido2" class="col-fixed custom-col-fixed-label-2">
+            2do apellido
+          </label>
+          <div class="col-fixed custom-col-fixed-input-2">
+            <input
+              pInputText
+              id="apellido2"
+              formControlName="apellido2"
+              aria-describedby="apellido2-help"
+              placeholder="2do apellido de la persona"
+              autocomplete="off"
+              [style]="{ width: '-webkit-fill-available' }"
+            />
+          </div>
+        </div>
+        <div class="field grid">
+          <label for="numeroTarjeta" class="col-fixed custom-col-fixed-label-2">
+            Numero Tarjeta
+          </label>
+          <div class="col-fixed custom-col-fixed-input-2">
+            <input
+              pInputText
+              id="numeroTarjeta"
+              formControlName="numeroTarjeta"
+              aria-describedby="numeroTarjeta-help"
+              placeholder="Numero de tarjeta"
+              autocomplete="off"
+              [style]="{ width: '-webkit-fill-available' }"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 field grid pt-1 mb-0">
+      <label for="sexo" class="col-fixed custom-col-fixed-label"> Sexo </label>
+      <div class="col-fixed custom-col-fixed-input-sm">
+        <p-dropdown
+          [options]="selectSexo()"
+          formControlName="sexo"
+          placeholder="Seleccionar"
+          optionValue="value"
+          optionLabel="label"
+          [showClear]="true"
+          [style]="{ width: '-webkit-fill-available' }"
+        ></p-dropdown>
+      </div>
+    </div>
+    <div class="col-12 field grid pt-0 mb-0">
+      <label for="fechaNacimiento" class="col-fixed custom-col-fixed-label">
+        Fecha de nacimiento
+      </label>
+      <div class="col-fixed custom-col-fixed-input">
+        <p-calendar
+          [showIcon]="true"
+          [showClear]="true"
+          [showOnFocus]="false"
+          dateFormat="dd/mm/yy"
+          formControlName="fechaNacimiento"
+          [style]="{ width: '-webkit-fill-available' }"
+        ></p-calendar>
+      </div>
+    </div>
+    <div class="col-12 field grid pt-0 mb-0">
+      <label for="lugarNacimiento" class="col-fixed custom-col-fixed-label">
+        Lugar de nacimiento
+      </label>
+      <div class="col-fixed custom-col-fixed-input">
+        <input
+          pInputText
+          id="lugarNacimiento"
+          formControlName="lugarNacimiento"
+          aria-describedby="lugarNacimiento-help"
+          placeholder="Lugar de nacimiento"
+          autocomplete="off"
+          [style]="{ width: '-webkit-fill-available' }"
+        />
+      </div>
+    </div>
+    <div class="col-12 field grid pt-1 mb-0">
+      <label for="idPais" class="col-fixed custom-col-fixed-label">
+        Nacionalidad
+      </label>
+      <div class="col-fixed custom-col-fixed-input">
+        @if (selectPaises().length > 0) {
+          <p-dropdown
+            [options]="selectPaises()"
+            formControlName="idPais"
+            placeholder="Seleccionar"
+            optionValue="value"
+            optionLabel="label"
+            [showClear]="true"
+            [filter]="true"
+            filterBy="label"
+            [style]="{ width: '-webkit-fill-available' }"
+          ></p-dropdown>
+        } @else {
+          <p-skeleton
+            [style]="{
+              width: '-webkit-fill-available',
+              height: '30px',
+            }"
+          ></p-skeleton>
+        }
+      </div>
+    </div>
+    <div class="col-12 field grid pt-0 mb-0">
+      <label for="direccion1" class="col-fixed custom-col-fixed-label">
+        Direccion
+      </label>
+      <div class="col-fixed custom-col-fixed-input-bg">
+        <input
+          pInputText
+          id="direccion1"
+          formControlName="direccion1"
+          aria-describedby="direccion1-help"
+          placeholder="Direccion"
+          autocomplete="off"
+          [style]="{ width: '-webkit-fill-available' }"
+        />
+      </div>
+    </div>
+    <div class="col-12 field grid pt-0 mb-0">
+      <label for="cp1" class="col-fixed custom-col-fixed-label">
+        Codigo Postal
+      </label>
+      <div class="col-fixed custom-col-fixed-input inputNumberFixedWidth">
+        <p-inputNumber
+          id="cp1"
+          formControlName="cp1"
+          aria-describedby="cp1-help"
+          placeholder="Codigo Postal"
+          autocomplete="off"
+          [useGrouping]="false"
+        />
+      </div>
+    </div>
+    <div class="col-12 field grid pt-0 mb-0">
+      <label for="localidad1" class="col-fixed custom-col-fixed-label">
+        Localidad
+      </label>
+      <div class="col-fixed custom-col-fixed-input">
+        <input
+          pInputText
+          id="localidad1"
+          formControlName="localidad1"
+          aria-describedby="localidad1-help"
+          placeholder="Localidad"
+          autocomplete="off"
+          [style]="{ width: '-webkit-fill-available' }"
+        />
+      </div>
+    </div>
+    <div class="col-12 field grid pt-0 mb-0">
+      <label for="provincia1" class="col-fixed custom-col-fixed-label">
+        Provincia
+      </label>
+      <div class="col-fixed custom-col-fixed-input">
+        <input
+          pInputText
+          id="provincia1"
+          formControlName="provincia1"
+          aria-describedby="provincia1-help"
+          placeholder="Provincia"
+          autocomplete="off"
+          [style]="{ width: '-webkit-fill-available' }"
+        />
+      </div>
+    </div>
+    <div class="col-12 field grid pt-0 mb-0">
+      <label for="telefono1" class="col-fixed custom-col-fixed-label">
+        Telefono
+      </label>
+      <div class="col-fixed custom-col-fixed-input inputNumberFixedWidth">
+        <p-inputMask
+          id="telefono1"
+          formControlName="telefono1"
+          aria-describedby="telefono1-help"
+          placeholder="Telefono"
+          autocomplete="off"
+          mask="999 999 999"
+          [autoClear]="false"
+        />
+      </div>
+    </div>
+    <div class="col-12 field grid pt-0 mb-0">
+      <label for="emailPersonal" class="col-fixed custom-col-fixed-label">
+        Mail
+      </label>
+      <div class="col-fixed custom-col-fixed-input-bg">
+        <input
+          pInputText
+          id="emailPersonal"
+          formControlName="emailPersonal"
+          aria-describedby="emailPersonal-help"
+          placeholder="Mail"
+          autocomplete="off"
+          [style]="{ width: '-webkit-fill-available' }"
+        />
+      </div>
+    </div>
+    <div class="col-12 field grid pt-0 mb-0">
+      <label for="nss" class="col-fixed custom-col-fixed-label"> NSS </label>
+      <div class="col-fixed custom-col-fixed-input inputNumberFixedWidth">
+        <p-inputMask
+          id="nss"
+          formControlName="nss"
+          aria-describedby="nss-help"
+          placeholder="Numero de Seguridad Social"
+          autocomplete="off"
+          mask="99 99999999 99"
+          [autoClear]="false"
+        />
+      </div>
+    </div>
+    <div class="col-12 field grid pt-1 mb-0">
+      <label for="activo" class="col-fixed custom-col-fixed-label">
+        Activo
+      </label>
+      <div class="col-fixed custom-col-fixed-input-sm">
+        <p-dropdown
+          [options]="selectSN()"
+          formControlName="activo"
+          placeholder="Seleccionar"
+          [showClear]="true"
+          [style]="{ width: '-webkit-fill-available' }"
+        ></p-dropdown>
+      </div>
+    </div>
+    <div class="col-12 field grid pt-1 mb-0">
+      <label for="personalCnb" class="col-fixed custom-col-fixed-label">
+        Personal CNB
+      </label>
+      <div class="col-fixed custom-col-fixed-input-sm">
+        <p-dropdown
+          [options]="selectSN()"
+          formControlName="personalCnb"
+          placeholder="Seleccionar"
+          [showClear]="true"
+          [style]="{ width: '-webkit-fill-available' }"
+        ></p-dropdown>
+      </div>
+    </div>
+    <div class="col-12 field grid pt-0 mb-0">
+      <label for="titulacion" class="col-fixed custom-col-fixed-label">
+        Titulaciones
+      </label>
+      <div class="col-fixed custom-col-fixed-input-bg">
+        @if (selectTitulaciones().length > 0) {
+          <p-dropdown
+            [options]="selectTitulaciones()"
+            [(ngModel)]="titulacionToAdd"
+            [ngModelOptions]="{ standalone: true }"
+            id="titulacion"
+            placeholder="Seleccionar"
+            optionValue="label"
+            optionLabel="label"
+            [showClear]="true"
+            [filter]="true"
+            filterBy="label"
+            [style]="{ width: '-webkit-fill-available' }"
+          ></p-dropdown>
+        } @else {
+          <p-skeleton
+            [style]="{
+              width: '-webkit-fill-available',
+              height: '30px',
+            }"
+          ></p-skeleton>
+        }
+      </div>
+      <p-button
+        label="Agregar"
+        icon="pi pi-plus"
+        pTooltip="Agregar titulacion"
+        tooltipPosition="right"
+        class="p-button-sm"
+        (click)="addTitulacion()"
+        [disabled]="!titulacionToAdd()"
+      ></p-button>
+      <div class="col-10 lg:col-8 mt-3">
+        <p-table
+          [value]="titulaciones()"
+          [style]="{ width: '-webkit-fill-available' }"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Titulaciones</th>
+              <th>Acciones</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-titulacion>
+            <tr>
+              <td>{{ titulacion }}</td>
+              <td>
+                <p-button
+                  icon="pi pi-trash"
+                  styleClass="p-button-sm p-button-rounded p-button-danger"
+                  (click)="removeTitulacion(titulacion)"
+                  pTooltip="Eliminar titulacion"
+                  tooltipPosition="left"
+                ></p-button>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="2">
+                <p class="text-center"><b>No hay titulaciones</b></p>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+    <div class="col-12 field grid pt-0 mb-0">
+      <label
+        for="observaciones"
+        class="col-fixed custom-col-fixed-label align-items-start"
+      >
+        Observaciones
+      </label>
+      <div class="col-fixed custom-col-fixed-input-bg">
+        <textarea
+          pInputTextarea
+          id="observaciones"
+          formControlName="observaciones"
+          aria-describedby="observaciones-help"
+          placeholder="Observaciones"
+          autocomplete="off"
+          rows="3"
+          [autoResize]="true"
+          [style]="{ width: '-webkit-fill-available' }"
+        ></textarea>
+      </div>
+    </div>
+    <div
+      class="col-12 transparent-background"
+      style="position: sticky; bottom: 0"
+    >
+      <div class="w-full flex justify-content-center">
+        <p-button
+          styleClass="p-button-lg p-button-rounded"
+          icon="pi pi-spin pi-spinner"
+          label="Guardar"
+          (onClick)="save(file)"
+          pTooltip="Guardar cambios"
+        ></p-button>
+      </div>
+    </div>
+  </div>
+</form>

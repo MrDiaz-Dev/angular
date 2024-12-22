@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomMessageService } from 'src/app/services/utils/message.service';
 import { UsuarioService } from 'src/app/services/auth/usuario.service';
@@ -10,13 +16,13 @@ import { RippleModule } from 'primeng/ripple';
 import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
-
+import { PrimeNgModule } from 'src/app/layout/shared/prime-ng/prime-ng.module';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styles: [
-        `
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styles: [
+    `
       :host ::ng-deep .pi-eye,
       :host ::ng-deep .pi-eye-slash {
         transform: scale(1.6);
@@ -24,16 +30,17 @@ import { InputTextModule } from 'primeng/inputtext';
         color: var(--primary-color) !important;
       }
     `,
-    ],
-    standalone: true,
-    imports: [
+  ],
+  standalone: true,
+  imports: [
     FormsModule,
     ReactiveFormsModule,
     InputTextModule,
     PasswordModule,
     ButtonModule,
-    RippleModule
-],
+    RippleModule,
+    PrimeNgModule,
+  ],
 })
 export class LoginComponent implements OnInit {
   // valCheck: string[] = ['remember'];
@@ -46,7 +53,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private usuarioService: UsuarioService,
     private messageService: CustomMessageService,
-    private appConfigComponent: AppConfigComponent
+    private appConfigComponent: AppConfigComponent,
   ) {}
 
   public loading: boolean = false;
@@ -82,7 +89,9 @@ export class LoginComponent implements OnInit {
       if (this.usuarioService.canDoSomething()) {
         this.usuarioService.login(this.myForm.value).subscribe(
           (resp) => {
-            this.messageService.win('You have entered to the system successfully');
+            this.messageService.success(
+              'You have entered to the system successfully',
+            );
             localStorage.setItem('username', `${this.myForm.value.username}`);
             this.router.navigateByUrl('/');
           },
@@ -90,7 +99,7 @@ export class LoginComponent implements OnInit {
             console.log(error);
             this.loading = false;
             this.messageService.error(error.message);
-          }
+          },
         );
         clearInterval(interval);
       }

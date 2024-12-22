@@ -11,6 +11,8 @@ import { Campo } from 'src/app/layout/interfaces/campo.interface';
 import { FechaService } from 'src/app/services/utils/fecha.service';
 import { TableLazyLoadEvent } from 'primeng/table';
 import { TablaService } from 'src/app/services/tabla.service';
+import { take } from 'rxjs';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-bus-reducida-listado',
@@ -28,6 +30,7 @@ export class BusReducidaListadoComponent {
   datosPersonalesService = inject(DatosPersonalesService);
   fechaService = inject(FechaService);
   tablaService = inject(TablaService);
+  title = inject(Title);
 
   // region variables
   titulo = 'Resultado de la busqueda reducida';
@@ -42,10 +45,12 @@ export class BusReducidaListadoComponent {
 
   errores: Message[] = [];
 
-  error404: Message[] = [{
-    severity: 'info',
-    detail: 'No se encontraron registros',
-  }];
+  error404: Message[] = [
+    {
+      severity: 'info',
+      detail: 'No se encontraron registros',
+    },
+  ];
 
   totalItems!: number;
   first: number = 0;
@@ -77,6 +82,7 @@ export class BusReducidaListadoComponent {
 
   ngOnInit() {
     console.warn('Busqueda reducida listado');
+    this.title.setTitle('RRHH - Busqueda reducida listado');
 
     this.urlParams = this.router.url.split('?')[1] ?? '';
   }
@@ -87,20 +93,19 @@ export class BusReducidaListadoComponent {
 
   /**
    * Carga los datos de la tabla basándose en el evento de carga diferida de la tabla.
-   * 
-   * @param {TableLazyLoadEvent} [event=null] - El evento de carga diferida de la tabla. 
+   *
+   * @param {TableLazyLoadEvent} [event=null] - El evento de carga diferida de la tabla.
    * Si no se proporciona, se utiliza el evento anterior almacenado.
-   * 
+   *
    * @remarks
-   * Este método establece el estado de carga en verdadero, determina los parámetros de datos de 
-   * la tabla utilizando el servicio `tablaService`, y luego actualiza las propiedades 
+   * Este método establece el estado de carga en verdadero, determina los parámetros de datos de
+   * la tabla utilizando el servicio `tablaService`, y luego actualiza las propiedades
    * `url`, `first`, `rows` y `prevEvent` con los valores devueltos por el servicio.
    * Finalmente, llama al método `cargarDatos` después de un breve retraso.
    */
   cargarTabla(event: TableLazyLoadEvent = null) {
-
     this.loading.set(true);
-    
+
     event = event ? event : this.prevEvent ? this.prevEvent : null;
 
     let tableDataParams = this.tablaService.cargarTabla(event, this.urlParams);
@@ -125,51 +130,57 @@ export class BusReducidaListadoComponent {
    * En caso de error, se registra el error en la consola y se muestra un mensaje de error al usuario.
    */
   cargarDatos() {
-    this.datosPersonalesService.paginated(this.url).subscribe(
-      (datos) => {
-        this.data = datos['hydra:member'];
-        this.totalItems = datos['hydra:totalItems'];
-        this.mostrarDel = this.first + 1;
-        this.mostrarAl = this.mostrarDel + this.rows - 1;
-        if (this.mostrarAl > this.totalItems) {
-          this.mostrarAl = this.totalItems;
-        }
+    this.datosPersonalesService
+      .paginated(this.url)
+      .pipe(take(1))
+      .subscribe({
+        next: (datos) => {
+          this.data = datos['hydra:member'];
+          this.totalItems = datos['hydra:totalItems'];
+          this.mostrarDel = this.first + 1;
+          this.mostrarAl = this.mostrarDel + this.rows - 1;
+          if (this.mostrarAl > this.totalItems) {
+            this.mostrarAl = this.totalItems;
+          }
 
-        this.data.forEach((item) => {
-          this.cols.forEach((col) => {
-            if (col.type == 'date') {
-              item[col.field] = this.fechaService.fechaAbsoluta(
-                item[col.field],
-              );
-            }
+          this.data.forEach((item) => {
+            this.cols.forEach((col) => {
+              if (col.type == 'date') {
+                item[col.field] = this.fechaService.fechaAbsoluta(
+                  item[col.field],
+                );
+              }
+            });
           });
-        });
 
-        this.calcItemsPerPageOptions();
+          this.calcItemsPerPageOptions();
 
-        this.loading.set(false);
-      },
-      (error) => {
-        console.error(error);
-        this.messageService.error(
-          error.error.message ?? 'Error desconocido al cargar los datos',
-        );
-      },
-    );
+          this.loading.set(false);
+        },
+        error: (error) => {
+          console.error(error);
+          this.messageService.error(
+            error.error.message ?? 'Error desconocido al cargar los datos',
+          );
+        },
+      });
   }
 
   navegarAlDetalle(personal: DatosPersonales) {
     console.log('urlParams => ', this.urlParams);
-    sessionStorage.setItem('previousPersonalPage', '/busqueda/bus-reducida-listado?' + this.urlParams);
+    sessionStorage.setItem(
+      'previousPersonalPage',
+      '/busqueda/bus-reducida-listado?' + this.urlParams,
+    );
     this.router.navigate(['personal/datos-personales', personal.id]);
   }
 
   /**
    * Calcula y llena el array `itemsPerPageOptions` con opciones para el número de elementos por página.
-   * 
+   *
    * Este método itera desde 10 hasta `totalItems` en incrementos de 10, agregando cada valor al array `itemsPerPageOptions`.
    * Finalmente, agrega el valor de `totalItems` al array.
-   * 
+   *
    * @remarks
    * - El método asegura que las opciones estén en múltiplos de 10 hasta el número total de elementos.
    * - El valor de `totalItems` siempre se incluye como la última opción.

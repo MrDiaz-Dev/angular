@@ -12,7 +12,7 @@ interface alert {
   providedIn: 'root',
 })
 export class CustomMessageService {
-  private readonly messageService = inject(MessageService)
+  private readonly messageService = inject(MessageService);
 
   add(message: alert) {
     // let messageConfig: SweetAlertOptions = {
@@ -32,40 +32,39 @@ export class CustomMessageService {
     this.messageService.add({
       severity: message.severity,
       summary: message.summary,
-      detail: message.detail
-    })
+      detail: message.detail,
+    });
   }
 
-  error(detail) {
-
+  error(detail, summary = 'ERROR') {
     this.messageService.add({
       severity: 'error',
-      summary: 'ERROR',
-      detail: detail
-    })
+      summary: summary,
+      detail: detail,
+    });
   }
 
-  win(detail) {
+  success(detail, summary = 'SUCCESS') {
     this.messageService.add({
       severity: 'success',
-      summary: 'SUCCESS',
-      detail: detail
-    })
+      summary: summary,
+      detail: detail,
+    });
   }
 
-  info(detail) {
+  info(detail, summary = 'INFO') {
     this.messageService.add({
       severity: 'info',
-      summary: 'INFO',
-      detail: detail
-    })
+      summary: summary,
+      detail: detail,
+    });
   }
 
-  alert(detail) {
+  alert(detail, summary = 'ALERT') {
     this.messageService.add({
       severity: 'warn',
-      summary: 'ALERT',
-      detail: detail
-    })
+      summary: summary,
+      detail: detail,
+    });
   }
 }

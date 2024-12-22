@@ -11,51 +11,84 @@
     </div>
   </ng-template>
 </p-toolbar>
-<p-toolbar styleClass="toolbar-sin-bordes">
-  <ng-template pTemplate="left">
-    <div class="my-2">
-      <h2 class="mb-0">{{ titulo() }}</h2>
-    </div>
-  </ng-template>
-  <ng-template pTemplate="right">
-    <p-button
-      icon="pi pi-user"
-      label="Datos Personales"
-      pTooltip="Ver datos personales"
-      tooltipPosition="top"
-      styleClass="mr-2"
-      [routerLink]="'/personal/datos-personales/' + idPersona()"
-      [outlined]="page() !== 1"
-    ></p-button>
-    <p-button
-      icon="pi pi-user"
-      label="Datos Laborales"
-      pTooltip="Ver datos personales"
-      tooltipPosition="top"
-      styleClass="mr-2"
-      [routerLink]="'/personal/datos-laborales/' + idPersona()"
-      [outlined]="page() !== 2"
-    ></p-button>
-    <p-button
-      icon="pi pi-briefcase"
-      label="Situacion Laboral"
-      pTooltip="Ver datos personales"
-      tooltipPosition="top"
-      styleClass="mr-2"
-      [routerLink]="'/personal/situacion-laboral/' + idPersona()"
-      [outlined]="page() !== 3"
-    ></p-button>
-    <p-button
-      icon="pi pi-file-export"
-      label="Plantillas"
-      pTooltip="Ver plantillas"
-      tooltipPosition="top"
-      [routerLink]="'/personal/plantillas/' + idPersona()"
-      [outlined]="page() !== 4"
-    ></p-button>
-  </ng-template>
-</p-toolbar>
 
-<hr />
+@if (loading()) {
+  <p-toolbar styleClass="toolbar-sin-bordes">
+    <ng-template pTemplate="left">
+      <div class="my-2">
+        <h3 class="mb-0">{{ titulo() }}</h3>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="right">
+      <p-button
+        icon="pi pi-user"
+        label="Datos Personales"
+        pTooltip="Ver datos personales"
+        tooltipPosition="top"
+        styleClass="mr-2"
+        [routerLink]="'/personal/datos-personales/' + idPersona()"
+        [outlined]="page() !== 1"
+      ></p-button>
+      <p-button
+        icon="pi pi-book"
+        label="Datos Laborales"
+        pTooltip="Ver datos personales"
+        tooltipPosition="top"
+        styleClass="mr-2"
+        [routerLink]="'/personal/datos-laborales/' + idPersona()"
+        [outlined]="page() !== 2"
+      ></p-button>
+      <p-button
+        icon="pi pi-briefcase"
+        label="Situacion Laboral"
+        pTooltip="Ver datos personales"
+        tooltipPosition="top"
+        styleClass="mr-2"
+        [routerLink]="'/personal/situacion-laboral/' + idPersona()"
+        [outlined]="page() !== 3"
+      ></p-button>
+      <p-button
+        icon="pi pi-file-export"
+        label="Plantillas"
+        pTooltip="Ver plantillas"
+        tooltipPosition="top"
+        [routerLink]="'/personal/plantillas/' + idPersona()"
+        [outlined]="page() !== 4"
+      ></p-button>
+    </ng-template>
+  </p-toolbar>
 
-<router-outlet></router-outlet>
+  <hr />
+
+  @switch (page()) {
+    @case (1) {
+      @if (!!datosPersonales()) {
+        <app-datos-personales
+          [(datosPersonales)]="datosPersonales"
+        ></app-datos-personales>
+      }
+    }
+    @case (2) {
+      @if (!!datosComunes()) {
+        <app-datos-comunes [(datosComunes)]="datosComunes"></app-datos-comunes>
+      }
+    }
+    @case (3) {
+      @if (!!situacionLaboral()) {
+        <app-situacion-laboral
+          [(situacionLaboral)]="situacionLaboral"
+        ></app-situacion-laboral>
+      }
+    }
+    @case (4) {
+      <app-plantillas></app-plantillas>
+    }
+  }
+} @else {
+  <div
+    class="hold-transition login-page flex justify-content-center align-items-center"
+    style="height: 80dvh"
+  >
+    <p-progressSpinner></p-progressSpinner>
+  </div>
+}

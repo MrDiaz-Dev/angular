@@ -15,38 +15,41 @@ import { NotfoundComponent } from './layout/notfound/notfound.component';
           children: [
             {
               path: '',
+              title: 'RRHH',
               loadChildren: () =>
                 import('./layout/dashboard/dashboard.module').then(
-                  (m) => m.DashboardModule
+                  (m) => m.DashboardModule,
                 ),
             },
             {
               path: 'busqueda',
               loadChildren: () =>
                 import('./layout/modules/busqueda/busqueda.module').then(
-                  (m) => m.BusquedaModule
+                  (m) => m.BusquedaModule,
                 ),
             },
             {
               path: 'personal',
               loadChildren: () =>
                 import('./layout/modules/personal/personal.module').then(
-                  (m) => m.PersonalModule
+                  (m) => m.PersonalModule,
                 ),
             }
           ],
         },
         {
           path: 'auth',
+          title: 'RRHH - Login',
           loadChildren: () =>
             import('./auth/auth.module').then((m) => m.AuthModule),
         },
         // { path: 'notfound', component: NotfoundComponent },
         {
           path: '**',
+          title: 'RRHH - Not Found',
           loadComponent: () =>
             import('./layout/notfound/notfound.component').then(
-              (m) => m.NotfoundComponent
+              (m) => m.NotfoundComponent,
             ),
         },
       ],
@@ -54,7 +57,7 @@ import { NotfoundComponent } from './layout/notfound/notfound.component';
         scrollPositionRestoration: 'enabled',
         anchorScrolling: 'enabled',
         onSameUrlNavigation: 'reload',
-      }
+      },
     ),
   ],
   exports: [RouterModule],

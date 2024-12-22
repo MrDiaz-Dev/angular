@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, model } from '@angular/core';
 
 @Component({
   selector: 'app-situacion-laboral',
@@ -9,4 +9,5 @@ import { Component } from '@angular/core';
 })
 export class SituacionLaboralComponent {
 
+  situacionLaboral = model<any>()
 }

@@ -1,21 +1,21 @@
 @if (loading) {
   <div
-    class="flex align-items-center justify-content-center"
-    style="height: 80vh"
-    >
-    <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+    class="hold-transition login-page flex justify-content-center align-items-center"
+    style="height: 100dvh"
+  >
+    <p-progressSpinner></p-progressSpinner>
   </div>
 }
 
 @if (!loading) {
   <div
     class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden"
-    >
+  >
     <div class="flex flex-column align-items-center justify-content-center">
       <div
         class="w-full card py-8 px-4 sm:px-7"
         style="border-radius: 10px; box-shadow: 0 0 60px 0 #5181fd"
-        >
+      >
         <div class="text-center mb-5">
           <!-- <img
           src="assets/demo/images/login/avatar.png"
@@ -28,56 +28,56 @@
               src="../../../favicon.ico"
               alt="Convatec Tools Logo"
               style="max-height: 8rem"
-              />
-            </div>
-            <span class="text-600 font-medium"
-              >Insert your credentials to continue</span
-              >
-            </div>
-            <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="login()">
-              <div class="flex flex-column">
-                <!-- <label
+            />
+          </div>
+          <span class="text-600 font-medium"
+            >Insert your credentials to continue</span
+          >
+        </div>
+        <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="login()">
+          <div class="flex flex-column">
+            <!-- <label
                 class="w-full"
                 for="email1"
                 class="block text-900 text-xl font-medium mb-2"
                 >Nombre de Usuario</label
                 > -->
-                <input
-                  id="email1"
-                  type="text"
-                  formControlName="username"
-                  placeholder="Username"
-                  pInputText
-                  class="w-full md:w-30rem mb-5"
-                  style="padding: 1rem"
-                  autocomplete="off"
-                  spellcheck="false"
-                  />
-                  <!-- <label
+            <input
+              id="email1"
+              type="text"
+              formControlName="username"
+              placeholder="Username"
+              pInputText
+              class="w-full md:w-30rem mb-5"
+              style="padding: 1rem"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <!-- <label
                   for="password1"
                   class="block text-900 font-medium text-xl mb-2"
                   >Contrasena</label
                   > -->
-                  <p-password
-                    id="password1"
-                    formControlName="password"
-                    placeholder="Password"
-                    [toggleMask]="true"
-                    styleClass="mb-5 w-full"
-                    inputStyleClass="w-full p-3 md:w-30rem"
-                    autocomplete="new-password"
-                    [feedback]="false"
-                  ></p-password>
-                  <button
-                    pButton
-                    pRipple
-                    type="submit"
-                    label="Login"
-                    class="w-full p-3 text-xl"
-                  ></button>
-                </div>
-              </form>
-            </div>
+            <p-password
+              id="password1"
+              formControlName="password"
+              placeholder="Password"
+              [toggleMask]="true"
+              styleClass="mb-5 w-full"
+              inputStyleClass="w-full p-3 md:w-30rem"
+              autocomplete="new-password"
+              [feedback]="false"
+            ></p-password>
+            <button
+              pButton
+              pRipple
+              type="submit"
+              label="Login"
+              class="w-full p-3 text-xl"
+            ></button>
           </div>
-        </div>
-      }
+        </form>
+      </div>
+    </div>
+  </div>
+}

@@ -26,9 +26,9 @@ export class DatosPersonalesService {
     return this.http.get<DatosPersonalesResponse>(url);
   }
 
-  get(id: number): Observable<DatosPersonalesResponse> {
+  get(id: number): Observable<DatosPersonales> {
     const url = `${this.API_URL}/datos-personales/${id}`;
-    return this.http.get<DatosPersonalesResponse>(url);
+    return this.http.get<DatosPersonales>(url);
   }
 
   paginated(urlParams: string): Observable<DatosPersonalesResponse> {

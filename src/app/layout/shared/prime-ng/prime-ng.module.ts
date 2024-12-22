@@ -52,6 +52,8 @@ import { GridstackModule } from 'gridstack/dist/angular';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { HighlightJsModule } from 'ngx-highlight-js';
 import { TooltipModule } from 'primeng/tooltip';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { InputMaskModule } from 'primeng/inputmask';
 
 @NgModule({
   declarations: [],
@@ -115,6 +117,8 @@ import { TooltipModule } from 'primeng/tooltip';
     ContextMenuModule,
     HighlightJsModule,
     TooltipModule,
+    ProgressSpinnerModule,
+    InputMaskModule,
   ],
   providers: [MessageService, ConfirmationService, MessagesModule],
 })

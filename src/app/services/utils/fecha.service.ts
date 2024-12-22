@@ -99,7 +99,7 @@ export class FechaService {
   }
 
   formatDatesBeforeSend(body) {
-    console.log('body before dates', body);
+    // console.log('body before dates', body);
 
     for (const key in body) {
       if (Object.prototype.hasOwnProperty.call(body, key)) {
@@ -110,7 +110,7 @@ export class FechaService {
       }
     }
 
-    console.log('body after dates', body);
+    // console.log('body after dates', body);
 
     return body;
   }

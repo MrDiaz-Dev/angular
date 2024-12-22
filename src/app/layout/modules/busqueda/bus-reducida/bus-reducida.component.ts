@@ -1,10 +1,11 @@
 import { HttpParams } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   FormsModule,
   ReactiveFormsModule,
   UntypedFormBuilder,
 } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { PrimeNgModule } from 'src/app/layout/shared/prime-ng/prime-ng.module';
 import { CustomMessageService } from 'src/app/services/utils/message.service';
@@ -16,13 +17,14 @@ import { CustomMessageService } from 'src/app/services/utils/message.service';
   templateUrl: './bus-reducida.component.html',
   styleUrl: './bus-reducida.component.scss',
 })
-export class BusReducidaComponent {
+export class BusReducidaComponent implements OnInit{
   constructor() {}
 
   // region servicios y otras dependencias
-  private fb = inject(UntypedFormBuilder);
-  private router = inject(Router);
-  private messageService = inject(CustomMessageService);
+  fb = inject(UntypedFormBuilder);
+  router = inject(Router);
+  messageService = inject(CustomMessageService);
+  title = inject(Title)
 
   // region variables
   titulo = 'Busqueda reducida';
@@ -37,6 +39,7 @@ export class BusReducidaComponent {
 
   ngOnInit() {
     console.warn('Busqueda reducida');
+    this.title.setTitle('RRHH - Busqueda reducida');
     const busquedaReducida = JSON.parse(
       sessionStorage.getItem('busquedaReducida')
     );
