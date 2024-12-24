@@ -1,4 +1,9 @@
-<form [formGroup]="form" (ngSubmit)="save(file)" (keyup.enter)="save(file)" autocomplete="off">
+<form
+  [formGroup]="form"
+  (ngSubmit)="save(file)"
+  (keyup.enter)="save(file)"
+  autocomplete="off"
+>
   <div class="grid">
     <div class="col-12 grid pb-0">
       <div
@@ -399,72 +404,76 @@
         Titulaciones
       </label>
       <div class="col-fixed custom-col-fixed-input-bg">
-        @if (selectTitulaciones().length > 0) {
-          <p-dropdown
-            [options]="selectTitulaciones()"
-            [(ngModel)]="titulacionToAdd"
-            [ngModelOptions]="{ standalone: true }"
-            id="titulacion"
-            placeholder="Seleccionar"
-            optionValue="label"
-            optionLabel="label"
-            [showClear]="true"
-            [filter]="true"
-            filterBy="label"
-            [style]="{ width: '-webkit-fill-available' }"
-          ></p-dropdown>
-        } @else {
-          <p-skeleton
-            [style]="{
-              width: '-webkit-fill-available',
-              height: '30px',
-            }"
-          ></p-skeleton>
-        }
+        <div class="flex flex-row">
+          @if (selectTitulaciones().length > 0 ) {
+            <p-dropdown
+              [options]="selectTitulaciones()"
+              [(ngModel)]="titulacionToAdd"
+              [ngModelOptions]="{ standalone: true }"
+              id="titulacion"
+              placeholder="Seleccionar"
+              optionValue="label"
+              optionLabel="label"
+              [showClear]="true"
+              [filter]="true"
+              filterBy="label"
+              class="w-full"
+              [style]="{ width: '97%' }"
+            ></p-dropdown>
+          } @else {
+            <p-skeleton
+              class="w-full"
+              [style]="{
+                width: '97%',
+                height: '30px',
+              }"
+            ></p-skeleton>
+          }
+          <p-button
+            label="Agregar"
+            icon="pi pi-plus"
+            pTooltip="Agregar titulacion"
+            tooltipPosition="right"
+            (click)="addTitulacion()"
+            [disabled]="!titulacionToAdd()"
+          ></p-button>
+        </div>
       </div>
-      <p-button
-        label="Agregar"
-        icon="pi pi-plus"
-        pTooltip="Agregar titulacion"
-        tooltipPosition="right"
-        class="p-button-sm"
-        (click)="addTitulacion()"
-        [disabled]="!titulacionToAdd()"
-      ></p-button>
-      <div class="col-10 lg:col-8 mt-3">
-        <p-table
-          [value]="titulaciones()"
-          [style]="{ width: '-webkit-fill-available' }"
-        >
-          <ng-template pTemplate="header">
-            <tr>
-              <th>Titulaciones</th>
-              <th>Acciones</th>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-titulacion>
-            <tr>
-              <td>{{ titulacion }}</td>
-              <td>
-                <p-button
-                  icon="pi pi-trash"
-                  styleClass="p-button-sm p-button-rounded p-button-danger"
-                  (click)="removeTitulacion(titulacion)"
-                  pTooltip="Eliminar titulacion"
-                  tooltipPosition="left"
-                ></p-button>
-              </td>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="emptymessage">
-            <tr>
-              <td colspan="2">
-                <p class="text-center"><b>No hay titulaciones</b></p>
-              </td>
-            </tr>
-          </ng-template>
-        </p-table>
-      </div>
+    </div>
+
+    <div class="col-11 md:col-10 lg:col-8 pt-1">
+      <p-table
+        [value]="titulaciones()"
+        [style]="{ width: '-webkit-fill-available' }"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Titulaciones</th>
+            <th>Acciones</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-titulacion>
+          <tr>
+            <td>{{ titulacion }}</td>
+            <td>
+              <p-button
+                icon="pi pi-trash"
+                styleClass="p-button-sm p-button-rounded p-button-danger"
+                (click)="removeTitulacion(titulacion)"
+                pTooltip="Eliminar titulacion"
+                tooltipPosition="left"
+              ></p-button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="2">
+              <p class="text-center"><b>No hay titulaciones</b></p>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
     </div>
     <div class="col-12 field grid pt-0 mb-0">
       <label

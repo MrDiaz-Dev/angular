@@ -288,6 +288,7 @@ a:has(> .full-link:focus) {
   min-width: 30rem;
   @media (max-width: 768px) {
     width: 100%;
+    min-width: 20rem;
   }
 }
 .custom-col-fixed-label {
