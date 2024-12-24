@@ -12,7 +12,7 @@
       style="height: 3.5rem"
     />
 
-    <h4><b>RRHH</b></h4>
+    <h4 class="no-in-md-2"><b>RRHH</b></h4>
   </a>
 
   <button
@@ -24,15 +24,13 @@
     <i class="pi pi-bars"></i>
   </button>
 
-  @if (mediaQuery == "md" || mediaQuery == "lg" || mediaQuery == "xl") {
-    <button
-      class="p-link layout-menu-button layout-topbar-button"
+  <button
+      class="p-link layout-menu-button layout-topbar-button no-in-md"
       routerLink=""
       pTooltip="Navigar al inicio"
     >
       <i class="pi pi-home"></i>
     </button>
-  }
 
   <!-- <button
     #menubutton

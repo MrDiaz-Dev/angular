@@ -12,7 +12,7 @@ import { UsuarioService } from 'src/app/services/auth/usuario.service';
 import { NgClass } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';
 import { RouterLink } from '@angular/router';
-import { MediaObserver, MediaChange } from '@angular/flex-layout';
+// import { MediaObserver, MediaChange } from '@angular/flex-layout';
 
 @Component({
   selector: 'app-topbar',
@@ -39,6 +39,17 @@ import { MediaObserver, MediaChange } from '@angular/flex-layout';
           background-color: #505d7d;
         }
       }
+
+      .no-in-md {
+        @media (max-width: 991.98px) {
+          display: none;
+        }
+      }
+      .no-in-md-2 {
+        @media (max-width: 550px) {
+          display: none;
+        }
+      }
     `,
   ],
 })
@@ -57,29 +68,21 @@ export class AppTopBarComponent implements OnInit {
 
   private readonly usuarioService = inject(UsuarioService);
 
-  private readonly mediaObserver = inject(MediaObserver);
+  // private readonly mediaObserver = inject(MediaObserver);
 
   public userImage: any;
 
   mediaQuery: string = 'xl';
 
   ngOnInit(): void {
-    this.mediaObserver.asObservable().subscribe((changes: MediaChange[]) => {
-      changes.forEach((change: MediaChange) => {
-        if (change.mqAlias === 'xs') {
-          this.mediaQuery = 'sm';
-        } else if (change.mqAlias === 'sm') {
-          this.mediaQuery = 'sm';
-        } else if (change.mqAlias === 'md') {
-          this.mediaQuery = 'md';
-        } else if (change.mqAlias === 'lg') {
-          this.mediaQuery = 'lg';
-        } else if (change.mqAlias === 'xl') {
-          this.mediaQuery = 'xl';
-        }
-      });
-      // console.log('MediaQuery: ', this.mediaQuery);
-    });
+    // this.mediaObserver.asObservable().subscribe((changes: MediaChange[]) => {
+    //   console.log('MediaQuery: ', changes);
+    //   changes.forEach((change: MediaChange) => {
+    //     this.mediaQuery = change.mqAlias;
+    //     // console.log('MediaQuery: ', change);
+    //   });
+    //   // console.log('MediaQuery: ', this.mediaQuery);
+    // });
   }
 
   onConfigButtonClick() {
