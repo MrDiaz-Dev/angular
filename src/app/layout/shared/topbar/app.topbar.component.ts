@@ -40,16 +40,16 @@ import { RouterLink } from '@angular/router';
         }
       }
 
-      .no-in-md {
-        @media (max-width: 991.98px) {
-          display: none;
-        }
-      }
-      .no-in-md-2 {
-        @media (max-width: 550px) {
-          display: none;
-        }
-      }
+      // .no-in-md {
+      //   @media (max-width: 991.98px) {
+      //     display: none;
+      //   }
+      // }
+      // .no-in-md-2 {
+      //   @media (max-width: 550px) {
+      //     display: none;
+      //   }
+      // }
     `,
   ],
 })
