@@ -3,6 +3,7 @@ import { DatosPersonales } from 'src/app/layout/interfaces/datos-personales.inte
 import { PrimeNgModule } from 'src/app/layout/shared/prime-ng/prime-ng.module';
 import { environment } from 'src/environments/environment';
 import { Message } from 'primeng/api';
+import { DatosComunes } from 'src/app/layout/interfaces/datos-comunes.interface';
 
 @Component({
   selector: 'app-cabecera-datos-personales',
@@ -17,13 +18,13 @@ export class CabeceraDatosPersonalesComponent {
 
   datosPersonales = model<DatosPersonales>();
 
-  tituloSituacionLaboralActual = input<string>();
+  datosComunesIdTipo = input();
 
   tituloSituacionLaboralActualPMessage = computed<Message[]>(() => {
     return [{
       severity: 'info',
-      summary: 'Tipo de empleado:',
-      detail: this.tituloSituacionLaboralActual(),
+      summary: `${this.datosComunesIdTipo()['idCategoria']['nombre']}`,
+      detail: `${this.datosComunesIdTipo()['nombre']}`,
       icon: 'pi pi-briefcase',
     }];
   })

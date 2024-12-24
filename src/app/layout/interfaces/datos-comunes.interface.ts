@@ -24,7 +24,7 @@ export interface DatosComunes {
   cargoSeg?: IdNombre | string;
 }
 
-interface IdTipo {
+export interface IdTipo {
   id: number;
   nombre: string;
   idCategoria: IdNombre;

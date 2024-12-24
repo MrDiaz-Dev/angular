@@ -79,9 +79,10 @@
       }
     }
     @case (2) {
-      @if (!!datosPersonales()) {
+      @if (!!datosPersonales() && !!datosComunes()) {
         <app-cabecera-datos-personales
           [(datosPersonales)]="datosPersonales"
+          [datosComunesIdTipo]="datosComunes().idTipo"
         ></app-cabecera-datos-personales>
         <hr>
         <br>
@@ -91,9 +92,10 @@
       }
     }
     @case (3) {
-      @if (!!datosPersonales()) {
+      @if (!!datosPersonales() && !!datosComunes()) {
         <app-cabecera-datos-personales
           [(datosPersonales)]="datosPersonales"
+          [datosComunesIdTipo]="datosComunes().idTipo"
         ></app-cabecera-datos-personales>
         <hr>
         <br>
@@ -105,9 +107,10 @@
       }
     }
     @case (4) {
-      @if (!!datosPersonales()) {
+      @if (!!datosPersonales() && !!datosComunes()) {
         <app-cabecera-datos-personales
           [(datosPersonales)]="datosPersonales"
+          [datosComunesIdTipo]="datosComunes().idTipo"
         ></app-cabecera-datos-personales>
         <hr>
         <br>
