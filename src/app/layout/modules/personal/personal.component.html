@@ -1,4 +1,4 @@
-<p-toolbar styleClass="toolbar-sin-bordes">
+<!-- <p-toolbar styleClass="toolbar-sin-bordes">
   <ng-template pTemplate="left">
     <div class="my-2">
       <p-button
@@ -10,55 +10,65 @@
       ></p-button>
     </div>
   </ng-template>
-</p-toolbar>
+</p-toolbar> -->
 
 @if (loading()) {
-  <p-toolbar styleClass="toolbar-sin-bordes">
-    <ng-template pTemplate="left">
-      <div class="my-2">
-        <h3 class="mb-0">{{ titulo() }}</h3>
-      </div>
-    </ng-template>
-    <ng-template pTemplate="right">
-      <p-button
-        icon="pi pi-user"
-        label="Datos Personales"
-        pTooltip="Ver datos personales"
-        tooltipPosition="top"
-        styleClass="mr-2"
-        [routerLink]="'/personal/datos-personales/' + idPersona()"
-        [outlined]="page() !== 1"
-      ></p-button>
-      <p-button
-        icon="pi pi-book"
-        label="Datos Laborales"
-        pTooltip="Ver datos personales"
-        tooltipPosition="top"
-        styleClass="mr-2"
-        [routerLink]="'/personal/datos-laborales/' + idPersona()"
-        [outlined]="page() !== 2"
-      ></p-button>
-      <p-button
-        icon="pi pi-briefcase"
-        label="Situacion Laboral"
-        pTooltip="Ver datos personales"
-        tooltipPosition="top"
-        styleClass="mr-2"
-        [routerLink]="'/personal/situacion-laboral/' + idPersona()"
-        [outlined]="page() !== 3"
-      ></p-button>
-      <p-button
-        icon="pi pi-file-export"
-        label="Plantillas"
-        pTooltip="Ver plantillas"
-        tooltipPosition="top"
-        [routerLink]="'/personal/plantillas/' + idPersona()"
-        [outlined]="page() !== 4"
-      ></p-button>
-    </ng-template>
-  </p-toolbar>
+  <div [style]="{ position: 'sticky', top: '5rem', background: 'var(--surface-ground)', zIndex: 10, paddingTop: '0.5rem' }">
+    <p-toolbar styleClass="toolbar-sin-bordes">
+      <ng-template pTemplate="left">
+        <div class="my-2 flex flex-row align-items-center">
+          <p-button
+            type="button"
+            icon="pi pi-arrow-left"
+            pTooltip="Volver a la búsqueda"
+            tooltipPosition="top"
+            (onClick)="back()"
+            styleClass="p-button-rounded mr-2"
+          ></p-button>
+          <h3 class="m-0">{{ titulo() }}</h3>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="right">
+        <p-button
+          icon="pi pi-user"
+          label="Datos Personales"
+          pTooltip="Ver datos personales"
+          tooltipPosition="top"
+          styleClass="mr-2"
+          [routerLink]="'/personal/datos-personales/' + idPersona()"
+          [outlined]="page() !== 1"
+        ></p-button>
+        <p-button
+          icon="pi pi-book"
+          label="Datos Laborales"
+          pTooltip="Ver datos personales"
+          tooltipPosition="top"
+          styleClass="mr-2"
+          [routerLink]="'/personal/datos-laborales/' + idPersona()"
+          [outlined]="page() !== 2"
+        ></p-button>
+        <p-button
+          icon="pi pi-briefcase"
+          label="Situacion Laboral"
+          pTooltip="Ver datos personales"
+          tooltipPosition="top"
+          styleClass="mr-2"
+          [routerLink]="'/personal/situacion-laboral/' + idPersona()"
+          [outlined]="page() !== 3"
+        ></p-button>
+        <p-button
+          icon="pi pi-file-export"
+          label="Plantillas"
+          pTooltip="Ver plantillas"
+          tooltipPosition="top"
+          [routerLink]="'/personal/plantillas/' + idPersona()"
+          [outlined]="page() !== 4"
+        ></p-button>
+      </ng-template>
+    </p-toolbar>
 
-  <hr />
+    <hr />
+  </div>
 
   @switch (page()) {
     @case (1) {
@@ -69,11 +79,23 @@
       }
     }
     @case (2) {
+      @if (!!datosPersonales()) {
+        <app-cabecera-datos-personales
+          [(datosPersonales)]="datosPersonales"
+        ></app-cabecera-datos-personales>
+        <hr>
+      }
       @if (!!datosComunes()) {
         <app-datos-comunes [(datosComunes)]="datosComunes"></app-datos-comunes>
       }
     }
     @case (3) {
+      @if (!!datosPersonales()) {
+        <app-cabecera-datos-personales
+          [(datosPersonales)]="datosPersonales"
+        ></app-cabecera-datos-personales>
+        <hr>
+      }
       @if (!!situacionLaboral()) {
         <app-situacion-laboral
           [(situacionLaboral)]="situacionLaboral"
@@ -81,6 +103,12 @@
       }
     }
     @case (4) {
+      @if (!!datosPersonales()) {
+        <app-cabecera-datos-personales
+          [(datosPersonales)]="datosPersonales"
+        ></app-cabecera-datos-personales>
+        <hr>
+      }
       <app-plantillas></app-plantillas>
     }
   }

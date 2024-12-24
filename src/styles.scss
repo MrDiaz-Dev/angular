@@ -401,3 +401,23 @@ input::placeholder {
 .transparent-background {
   background: linear-gradient(to bottom, transparent, var(--surface-ground) 100%);
 }
+
+.custom-col-fixed-cabecera-label {
+  display: flex;
+  align-items: center;
+  width: 20%;
+  min-width: 15rem;
+
+  @media (max-width: 768px) {
+    min-width: none;
+    width: 40%;
+  }
+}
+
+.custom-col-fixed-cabecera-value-text {
+  width: 50%;
+  max-width: 20rem;
+  @media (max-width: 768px) {
+    width: 40%;
+  }
+}

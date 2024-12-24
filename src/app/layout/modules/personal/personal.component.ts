@@ -27,6 +27,7 @@ import { CustomMessageService } from 'src/app/services/utils/message.service';
 import { Title } from '@angular/platform-browser';
 import { PlantillasComponent } from "./plantillas/plantillas.component";
 import { SituacionLaboralComponent } from "./forms/situacion-laboral/situacion-laboral.component";
+import { CabeceraDatosPersonalesComponent } from "./cabecera-datos-personales/cabecera-datos-personales.component";
 
 @Component({
   selector: 'app-personal',
@@ -37,7 +38,8 @@ import { SituacionLaboralComponent } from "./forms/situacion-laboral/situacion-l
     DatosPersonalesComponent,
     DatosComunesComponent,
     PlantillasComponent,
-    SituacionLaboralComponent
+    SituacionLaboralComponent,
+    CabeceraDatosPersonalesComponent
 ],
   templateUrl: './personal.component.html',
   styleUrl: './personal.component.scss',

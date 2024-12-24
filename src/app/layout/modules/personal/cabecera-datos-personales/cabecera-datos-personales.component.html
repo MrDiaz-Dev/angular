@@ -1,0 +1,101 @@
+<div class="grid">
+  <div class="col-12 grid pb-0" style="width: -webkit-fill-available;">
+    <div
+      class="col-12 md:col-4 xl:col-3 pb-0 flex align-items-center justify-content-center"
+    >
+      <div
+        class="flex flex-column justify-content-center mx-4"
+        style="min-height: 230px; min-width: 190px"
+      >
+        <p-image
+          [src]="cargarFotografiaURL()"
+          alt="avatar"
+          class="rounded float-right img-thumbnail img-fluid"
+          [imageStyle]="{
+            width: '100%',
+            maxWidth: '280px',
+            aspectRatio: '1',
+            borderRadius: '10%',
+            objectFit: 'cover',
+            boxShadow: '0 0 5px 0 rgba(0, 0, 0, 0.2)',
+          }"
+          [preview]="true"
+          loading="lazy"
+          [pTooltip]="
+            cargarFotografiaURL() === 'assets/images/notImage.png'
+              ? 'No hay imagen del personal'
+              : 'Ver imagen del personal'
+          "
+        ></p-image>
+      </div>
+    </div>
+    <div class="col-12 md:col-8 pb-0 mt-3 md:mt-0">
+      <div class="w-full h-full flex align-items-center">
+        <div class="w-full">
+          <div class="field grid">
+            <label for="nombre" class="col-fixed custom-col-fixed-cabecera-label">
+              Nombre
+            </label>
+            <div class="col-fixed custom-col-fixed-cabecera-value-text">
+              <span id="nombre" [style]="{ width: '-webkit-fill-available' }">
+                {{ datosPersonales().nombre }}
+              </span>
+            </div>
+          </div>
+          <div class="field grid">
+            <label for="apellido1" class="col-fixed custom-col-fixed-cabecera-label">
+              1er apellido
+            </label>
+            <div class="col-fixed custom-col-fixed-cabecera-value-text">
+              <span
+                id="apellido1"
+                [style]="{ width: '-webkit-fill-available' }"
+              >
+                {{ datosPersonales().apellido1 }}
+              </span>
+            </div>
+          </div>
+          <div class="field grid">
+            <label for="apellido2" class="col-fixed custom-col-fixed-cabecera-label">
+              2do apellido
+            </label>
+            <div class="col-fixed custom-col-fixed-cabecera-value-text">
+              <span
+                id="apellido2"
+                [style]="{ width: '-webkit-fill-available' }"
+              >
+                {{ datosPersonales().apellido2 }}
+              </span>
+            </div>
+          </div>
+          <div class="field grid">
+            <label for="dniNie" class="col-fixed custom-col-fixed-cabecera-label">
+              DNI
+            </label>
+            <div class="col-fixed custom-col-fixed-cabecera-value-text">
+              <span id="dniNie" [style]="{ width: '-webkit-fill-available' }">
+                {{ datosPersonales().dniNie }}
+              </span>
+            </div>
+          </div>
+          <div class="field grid">
+            <label
+              for="numeroTarjeta"
+              class="col-fixed custom-col-fixed-cabecera-label"
+            >
+              Numero Tarjeta
+            </label>
+            <div class="col-fixed custom-col-fixed-cabecera-value-text">
+              <span
+                id="numeroTarjeta"
+                [style]="{ width: '-webkit-fill-available' }"
+              >
+                {{ datosPersonales().numeroTarjeta }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

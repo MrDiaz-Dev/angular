@@ -1,3 +1,5 @@
+import { DatosPersonales } from "./datos-personales.interface";
+
 export interface IdNombre {
   id: number;
   nombre?: string;
@@ -66,19 +68,6 @@ export interface CuentaCargo {
 
 export interface CuentaCargoResponse {
   'hydra:member': CuentaCargo[];
-  'hydra:totalItems': number;
-}
-
-// -------------------------------------------------------------------
-
-export interface DatosPersonales extends IdNombre {
-  apellido1?: string;
-  apellido2?: string;
-  dniNie?: string;
-}
-
-export interface DatosPersonalesResponse {
-  'hydra:member': DatosPersonales[];
   'hydra:totalItems': number;
 }
 

@@ -16,7 +16,7 @@
             chooseLabel="SELECCIONAR"
             uploadLabel="Borrar Seleccion"
             uploadIcon="pi pi-times"
-            accept="image/*"
+            accept=".jpg,.jpeg,.png"
             [maxFileSize]="1000000"
             (onSelect)="onSelect($event)"
             (click)="clearFile()"
@@ -494,7 +494,7 @@
       <div class="w-full flex justify-content-center">
         <p-button
           styleClass="p-button-lg p-button-rounded"
-          icon="pi pi-spin pi-spinner"
+          icon="pi pi-save"
           label="Guardar"
           (onClick)="save(file)"
           pTooltip="Guardar cambios"
