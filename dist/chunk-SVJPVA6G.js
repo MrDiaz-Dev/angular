@@ -1,1 +1,0 @@
-import{Gb as i,Ob as l,Z as n,pb as a,qb as o}from"./chunk-OND53OBX.js";var m=(()=>{class t{static{this.\u0275fac=function(e){return new(e||t)}}static{this.\u0275cmp=n({type:t,selectors:[["app-plantillas"]],standalone:!0,features:[l],decls:2,vars:0,template:function(e,p){e&1&&(a(0,"p"),i(1,"plantillas works!"),o())}})}}return t})();export{m as a};
