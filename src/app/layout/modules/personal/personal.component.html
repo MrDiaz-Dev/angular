@@ -13,7 +13,15 @@
 </p-toolbar> -->
 
 @if (loading()) {
-  <div [style]="{ position: 'sticky', top: '5rem', background: 'var(--surface-ground)', zIndex: 10, paddingTop: '0.5rem' }">
+  <div
+    [style]="{
+      position: 'sticky',
+      top: '5rem',
+      background: 'var(--surface-ground)',
+      zIndex: 10,
+      paddingTop: '0.5rem',
+    }"
+  >
     <p-toolbar styleClass="toolbar-sin-bordes">
       <ng-template pTemplate="left">
         <div class="my-2 flex flex-row align-items-center">
@@ -26,6 +34,13 @@
             styleClass="p-button-rounded mr-2"
           ></p-button>
           <h3 class="m-0">{{ titulo() }}</h3>
+          @if (submitLoading()) {
+            <p-progressSpinner
+              [style]="{ width: '2rem', height: '100%' }"
+              styleClass="ml-3"
+              strokeWidth="6"
+            ></p-progressSpinner>
+          }
         </div>
       </ng-template>
       <ng-template pTemplate="right">
@@ -75,6 +90,7 @@
       @if (!!datosPersonales()) {
         <app-datos-personales
           [(datosPersonales)]="datosPersonales"
+          [(submitLoading)]="submitLoading"
         ></app-datos-personales>
       }
     }
@@ -84,11 +100,14 @@
           [(datosPersonales)]="datosPersonales"
           [datosComunesIdTipo]="datosComunes().idTipo"
         ></app-cabecera-datos-personales>
-        <hr>
-        <br>
+        <hr />
+        <br />
       }
       @if (!!datosComunes()) {
-        <app-datos-comunes [(datosComunes)]="datosComunes"></app-datos-comunes>
+        <app-datos-comunes
+          [(datosComunes)]="datosComunes"
+          [(submitLoading)]="submitLoading"
+        ></app-datos-comunes>
       }
     }
     @case (3) {
@@ -97,12 +116,13 @@
           [(datosPersonales)]="datosPersonales"
           [datosComunesIdTipo]="datosComunes().idTipo"
         ></app-cabecera-datos-personales>
-        <hr>
-        <br>
+        <hr />
+        <br />
       }
       @if (!!situacionLaboral()) {
         <app-situacion-laboral
           [(situacionLaboral)]="situacionLaboral"
+          [(submitLoading)]="submitLoading"
         ></app-situacion-laboral>
       }
     }
@@ -112,8 +132,8 @@
           [(datosPersonales)]="datosPersonales"
           [datosComunesIdTipo]="datosComunes().idTipo"
         ></app-cabecera-datos-personales>
-        <hr>
-        <br>
+        <hr />
+        <br />
       }
       <app-plantillas></app-plantillas>
     }

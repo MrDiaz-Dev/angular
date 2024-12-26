@@ -40,6 +40,8 @@ export class DatosComunesComponent implements OnInit {
   // #region variables
 
   datosComunes = model<DatosComunes>();
+  
+  submitLoading = model<boolean>();
 
   selectTrienios = computed<PDropdown[]>(() => {
     let trienios: PDropdown[] = [];
@@ -129,6 +131,8 @@ export class DatosComunesComponent implements OnInit {
 
     console.log('bodyToSend', bodyToSend);
 
+    this.submitLoading.set(true);
+
     this.datosComunesService
       .edit(this.datosComunes().id, bodyToSend)
       .pipe(take(1))
@@ -137,6 +141,7 @@ export class DatosComunesComponent implements OnInit {
           this.messageService.success('Datos laborales guardados');
           this.datosComunes.set(response);
           this.ngOnInit();
+          this.submitLoading.set(false);
         },
         error: (error) => {
           console.error(error);
@@ -144,6 +149,7 @@ export class DatosComunesComponent implements OnInit {
             error.error.message ??
               'Error desconocido al actualizar los datos laborales',
           );
+          this.submitLoading.set(false);
         },
       });
   }

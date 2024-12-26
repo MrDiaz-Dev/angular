@@ -10,4 +10,6 @@ import { Component, model } from '@angular/core';
 export class SituacionLaboralComponent {
 
   situacionLaboral = model<any>()
+
+  submitLoading = model<boolean>()
 }

@@ -151,6 +151,7 @@ export class PersonalComponent implements OnInit {
   datosPersonales = signal<DatosPersonales | null>(null);
   datosComunes = signal<DatosComunes | null>(null);
   situacionLaboral = signal<any>(null);
+  submitLoading = signal<boolean>(false);
 
   loading = computed<boolean>(() => {
     return !!this.datosPersonales() || !!this.datosComunes();

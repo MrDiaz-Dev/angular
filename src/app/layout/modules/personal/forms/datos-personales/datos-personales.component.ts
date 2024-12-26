@@ -49,6 +49,9 @@ export class DatosPersonalesComponent implements OnInit {
   // #region variables
 
   datosPersonales = model<DatosPersonales>();
+  
+  submitLoading = model<boolean>();
+
   // datosComunes = input<DatosComunes>()
 
   selectSN = signal<string[]>(['SI', 'NO']);
@@ -166,6 +169,8 @@ export class DatosPersonalesComponent implements OnInit {
 
     console.log('bodyToSend', bodyToSend);
 
+    this.submitLoading.set(true);
+
     this.datosPersonalesService
       .edit(this.datosPersonales().id, bodyToSend)
       .pipe(take(1))
@@ -176,6 +181,7 @@ export class DatosPersonalesComponent implements OnInit {
           file.clear();
           this.messageService.success('Datos personales actualizados');
           this.ngOnInit();
+          this.submitLoading.set(false);
         },
         error: (error) => {
           console.error(error);
@@ -183,6 +189,7 @@ export class DatosPersonalesComponent implements OnInit {
             error.error.message ??
               'Error desconocido al actualizar los datos personales',
           );
+          this.submitLoading.set(false);
         },
       });
   }
