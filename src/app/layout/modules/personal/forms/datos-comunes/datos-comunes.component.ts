@@ -2,6 +2,7 @@ import {
   Component,
   computed,
   inject,
+  input,
   model,
   OnInit,
   signal,
@@ -42,6 +43,8 @@ export class DatosComunesComponent implements OnInit {
   datosComunes = model<DatosComunes>();
   
   submitLoading = model<boolean>();
+
+  idPersona = input<string | number>();
 
   selectTrienios = computed<PDropdown[]>(() => {
     let trienios: PDropdown[] = [];
@@ -134,7 +137,7 @@ export class DatosComunesComponent implements OnInit {
     this.submitLoading.set(true);
 
     this.datosComunesService
-      .edit(this.datosComunes().id, bodyToSend)
+      .edit(this.idPersona() as number, bodyToSend)
       .pipe(take(1))
       .subscribe({
         next: (response) => {
