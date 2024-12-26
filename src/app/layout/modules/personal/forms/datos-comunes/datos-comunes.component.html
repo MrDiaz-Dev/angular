@@ -1,1 +1,135 @@
-<p>datos-comunes works!</p>
+<form
+  [formGroup]="form"
+  (ngSubmit)="save()"
+  (keyup.control.enter)="save()"
+  autocomplete="off"
+>
+  <div class="grid">
+    <div class="col-12 field grid pt-0 mb-0">
+      <label for="fechaIngresoCnb" class="col-fixed custom-col-fixed-label">
+        Fecha de ingreso en el CNB
+      </label>
+      <div class="col-fixed custom-col-fixed-input">
+        <p-calendar
+          [showIcon]="true"
+          [showClear]="true"
+          [showOnFocus]="false"
+          dateFormat="dd/mm/yy"
+          formControlName="fechaIngresoCnb"
+          [style]="{ width: '-webkit-fill-available' }"
+        ></p-calendar>
+      </div>
+    </div>
+    <div class="col-12 field grid pt-0 mb-0">
+      <label for="fechaIngresoAge" class="col-fixed custom-col-fixed-label">
+        Fecha de ingreso en el AGE
+      </label>
+      <div class="col-fixed custom-col-fixed-input">
+        <p-calendar
+          [showIcon]="true"
+          [showClear]="true"
+          [showOnFocus]="false"
+          dateFormat="dd/mm/yy"
+          formControlName="fechaIngresoAge"
+          [style]="{ width: '-webkit-fill-available' }"
+        ></p-calendar>
+      </div>
+    </div>
+    <div class="col-12 field grid pt-1 mb-0">
+      <label for="trienios" class="col-fixed custom-col-fixed-label">
+        Trienios
+      </label>
+      <div class="col-fixed custom-col-fixed-input-sm">
+        <p-dropdown
+          [options]="selectTrienios()"
+          formControlName="trienios"
+          placeholder="Seleccionar"
+          [showClear]="true"
+          [style]="{ width: '-webkit-fill-available' }"
+        ></p-dropdown>
+      </div>
+    </div>
+    <div class="col-12 field grid pt-0 mb-0">
+      <label for="extension" class="col-fixed custom-col-fixed-label">
+        Extension
+      </label>
+      <div class="col-fixed custom-col-fixed-input">
+        <input
+          pInputText
+          id="extension"
+          formControlName="extension"
+          aria-describedby="extension-help"
+          placeholder="Provincia"
+          autocomplete="off"
+          [style]="{ width: '-webkit-fill-available' }"
+        />
+      </div>
+    </div>
+    <div class="col-12 field grid pt-0 mb-0">
+      <label
+        for="extension"
+        class="col-fixed custom-col-fixed-label"
+        [pTooltip]="mailCNB() ? '' : 'No hay email registrado'"
+      >
+        Email del CNB
+      </label>
+      <div
+        class="col-fixed custom-col-fixed-input"
+        [pTooltip]="mailCNB() ? '' : 'No hay email registrado'"
+      >
+        <b>
+          {{ mailCNB() }}
+        </b>
+      </div>
+    </div>
+    <div class="col-12 field grid pt-1 mb-0">
+      <label for="visibleWeb" class="col-fixed custom-col-fixed-label">
+        Visible en Web CNB
+      </label>
+      <div class="col-fixed custom-col-fixed-input-sm">
+        <p-dropdown
+          [options]="selectSN()"
+          formControlName="visibleWeb"
+          placeholder="Seleccionar"
+          [showClear]="true"
+          [style]="{ width: '-webkit-fill-available' }"
+        ></p-dropdown>
+      </div>
+    </div>
+    <div class="col-12 field grid pt-0 mb-0">
+      <label
+        for="observaciones"
+        class="col-fixed custom-col-fixed-label align-items-start"
+      >
+        Observaciones
+      </label>
+      <div class="col-fixed custom-col-fixed-input-bg">
+        <textarea
+          pInputTextarea
+          id="observaciones"
+          formControlName="observaciones"
+          aria-describedby="observaciones-help"
+          placeholder="Observaciones"
+          autocomplete="off"
+          rows="3"
+          [autoResize]="true"
+          [style]="{ width: '-webkit-fill-available' }"
+        ></textarea>
+      </div>
+    </div>
+    <div
+      class="col-12 transparent-background"
+      style="position: sticky; bottom: 0"
+    >
+      <div class="w-full flex justify-content-center">
+        <p-button
+          styleClass="p-button-lg p-button-rounded"
+          icon="pi pi-save"
+          label="Guardar"
+          (onClick)="save()"
+          pTooltip="Guardar cambios"
+        ></p-button>
+      </div>
+    </div>
+  </div>
+</form>

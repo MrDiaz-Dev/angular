@@ -1,7 +1,7 @@
 <form
   [formGroup]="form"
   (ngSubmit)="save(file)"
-  (keyup.enter)="save(file)"
+  (keyup.control.enter)="save(file)"
   autocomplete="off"
 >
   <div class="grid">

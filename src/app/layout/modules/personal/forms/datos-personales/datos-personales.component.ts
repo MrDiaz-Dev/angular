@@ -146,6 +146,12 @@ export class DatosPersonalesComponent implements OnInit {
   }
 
   save(file: FileUpload) {
+
+    if (this.form.invalid) {
+      this.messageService.info('Revise los campos');
+      return;
+    }
+
     console.log('form', this.form.value);
 
     let bodyToSend = this.utilService.controlAndFormatIRIs(this.form.value);
