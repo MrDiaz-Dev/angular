@@ -24,7 +24,9 @@ export class CabeceraDatosPersonalesComponent {
     return [{
       severity: 'info',
       summary: `${this.datosComunesIdTipo()['idCategoria']['nombre']}`,
-      detail: `${this.datosComunesIdTipo()['nombre']}`,
+      detail: this.datosComunesIdTipo()['nombre'] == this.datosComunesIdTipo()['idCategoria']['nombre']
+        ? ''
+        : this.datosComunesIdTipo()['nombre'],
       icon: 'pi pi-briefcase',
     }];
   })

@@ -1,5 +1,5 @@
 <div class="grid">
-  <div class="col-12 grid pb-0" style="width: -webkit-fill-available;">
+  <div class="col-12 grid pb-0" style="width: -webkit-fill-available">
     <div
       class="col-12 md:col-4 xl:col-3 pb-0 flex align-items-center justify-content-center"
     >
@@ -13,7 +13,7 @@
           class="rounded float-right img-thumbnail img-fluid"
           [imageStyle]="{
             width: '100%',
-            maxWidth: '280px',
+            maxWidth: '270px',
             aspectRatio: '1',
             borderRadius: '10%',
             objectFit: 'cover',
@@ -33,7 +33,10 @@
       <div class="w-full h-full flex align-items-center">
         <div class="w-full">
           <div class="field grid">
-            <label for="nombre" class="col-fixed custom-col-fixed-cabecera-label">
+            <label
+              for="nombre"
+              class="col-fixed custom-col-fixed-cabecera-label"
+            >
               Nombre
             </label>
             <div class="col-fixed custom-col-fixed-cabecera-value-text">
@@ -43,7 +46,10 @@
             </div>
           </div>
           <div class="field grid">
-            <label for="apellido1" class="col-fixed custom-col-fixed-cabecera-label">
+            <label
+              for="apellido1"
+              class="col-fixed custom-col-fixed-cabecera-label"
+            >
               1er apellido
             </label>
             <div class="col-fixed custom-col-fixed-cabecera-value-text">
@@ -56,7 +62,10 @@
             </div>
           </div>
           <div class="field grid">
-            <label for="apellido2" class="col-fixed custom-col-fixed-cabecera-label">
+            <label
+              for="apellido2"
+              class="col-fixed custom-col-fixed-cabecera-label"
+            >
               2do apellido
             </label>
             <div class="col-fixed custom-col-fixed-cabecera-value-text">
@@ -69,7 +78,10 @@
             </div>
           </div>
           <div class="field grid">
-            <label for="dniNie" class="col-fixed custom-col-fixed-cabecera-label">
+            <label
+              for="dniNie"
+              class="col-fixed custom-col-fixed-cabecera-label"
+            >
               DNI
             </label>
             <div class="col-fixed custom-col-fixed-cabecera-value-text">
@@ -94,7 +106,12 @@
               </span>
             </div>
           </div>
-          <p-messages [value]="tituloSituacionLaboralActualPMessage()" [closable]="false" styleClass="titulo-situacion"></p-messages>
+            <p-messages
+            [value]="tituloSituacionLaboralActualPMessage()"
+            [closable]="false"
+            styleClass="titulo-situacion"
+            showTransitionOptions="0ms"
+          ></p-messages>
         </div>
       </div>
     </div>
