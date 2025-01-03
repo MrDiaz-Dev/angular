@@ -31,7 +31,6 @@ export class DatosComunesComponent implements OnInit {
   // region servicios y otras dependencias
   router = inject(Router);
   datosComunesService = inject(DatosComunesService);
-  datosTicService = inject(DatosTicService);
   fechaService = inject(FechaService);
   dropdownService = inject(DropdownService);
   utilService = inject(UtilService);
@@ -45,6 +44,8 @@ export class DatosComunesComponent implements OnInit {
   submitLoading = model<boolean>();
 
   idPersona = input<string | number>();
+  
+  mailCNB = input<string>();
 
   selectTrienios = computed<PDropdown[]>(() => {
     let trienios: PDropdown[] = [];
@@ -58,8 +59,6 @@ export class DatosComunesComponent implements OnInit {
     { label: 'SI', value: 'SI' },
     { label: 'NO', value: 'NO' },
   ]);
-
-  mailCNB = signal<string>('');
 
   form = this.fb.group({
     id: [null],
@@ -110,15 +109,7 @@ export class DatosComunesComponent implements OnInit {
       }
     }
 
-    this.cargarEmailCNB();
-
     console.log('form cargado', this.form.value);
-  }
-
-  cargarEmailCNB() {
-    this.datosTicService.getEmailCNB(this.datosComunes().id).then((mail) => {
-      this.mailCNB.set(mail);
-    });
   }
 
   save() {

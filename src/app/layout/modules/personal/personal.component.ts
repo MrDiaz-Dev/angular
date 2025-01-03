@@ -30,6 +30,7 @@ import { SituacionLaboralComponent } from './forms/situacion-laboral/situacion-l
 import { CabeceraDatosPersonalesComponent } from './cabecera-datos-personales/cabecera-datos-personales.component';
 import { FechaService } from 'src/app/services/utils/fecha.service';
 import { Message } from 'primeng/api';
+import { DatosTicService } from 'src/app/services/datos-tic.service';
 
 @Component({
   selector: 'app-personal',
@@ -51,6 +52,7 @@ export class PersonalComponent implements OnInit {
   router = inject(Router);
   datosPersonalesService = inject(DatosPersonalesService);
   datosComunesService = inject(DatosComunesService);
+  datosTicService = inject(DatosTicService);
   messageService = inject(CustomMessageService);
   fechaService = inject(FechaService);
   title = inject(Title);
@@ -156,6 +158,7 @@ export class PersonalComponent implements OnInit {
   situacionLaboral = signal<any>(null);
   submitLoading = signal<boolean>(false);
   bajaMedicaActual = signal<string | null>(null);
+  mailCNB = signal<string>('');
 
   loading = computed<boolean>(() => {
     return !!this.datosPersonales() || !!this.datosComunes();
@@ -230,6 +233,7 @@ export class PersonalComponent implements OnInit {
         next: (datosComunes) => {
           this.datosComunes.set(datosComunes);
           // console.log('Datos comunes cargados', this.datosComunes());
+          this.cargarEmailCNB();
         },
         error: (error) => {
           console.error(error);
@@ -261,6 +265,12 @@ export class PersonalComponent implements OnInit {
           // this.loadingBajaMedica = false
         },
       });
+  }
+
+  cargarEmailCNB() {
+    this.datosTicService.getEmailCNB(this.datosComunes().id).then((mail) => {
+      this.mailCNB.set(mail);
+    });
   }
 
   back() {
