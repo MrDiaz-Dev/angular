@@ -13,6 +13,12 @@
 </p-toolbar> -->
 
 @if (loading()) {
+  <p-menu
+    #menu
+    [model]="opciones()"
+    [popup]="true"
+    styleClass="w-9 sm:w-4 lg:w-3 xl:w-2"
+  ></p-menu>
   <div
     [style]="{
       position: 'sticky',
@@ -45,6 +51,7 @@
       </ng-template>
       <ng-template pTemplate="right">
         <p-button
+          id="noBtnMenu"
           icon="pi pi-user"
           label="Datos Personales"
           pTooltip="Ver datos personales"
@@ -54,6 +61,7 @@
           [outlined]="page() !== 1"
         ></p-button>
         <p-button
+          id="noBtnMenu"
           icon="pi pi-book"
           label="Datos Laborales"
           pTooltip="Ver datos personales"
@@ -63,6 +71,7 @@
           [outlined]="page() !== 2"
         ></p-button>
         <p-button
+          id="noBtnMenu"
           icon="pi pi-briefcase"
           label="Situacion Laboral"
           pTooltip="Ver datos personales"
@@ -72,6 +81,7 @@
           [outlined]="page() !== 3"
         ></p-button>
         <p-button
+          id="noBtnMenu"
           icon="pi pi-file-export"
           label="Plantillas"
           pTooltip="Ver plantillas"
@@ -81,10 +91,18 @@
           [outlined]="page() !== 4"
         ></p-button>
         <p-button
+          id="noBtnMenu"
           icon="pi pi-replay"
           pTooltip="Recargar datos"
           tooltipPosition="left"
           (onClick)="cargarDatos()"
+        ></p-button>
+        <p-button
+          id="BtnMenu"
+          icon="pi pi-bars"
+          pTooltip="Opciones"
+          tooltipPosition="left"
+          (click)="menu.toggle($event)"
         ></p-button>
       </ng-template>
     </p-toolbar>

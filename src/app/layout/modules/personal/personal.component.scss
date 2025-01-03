@@ -1,0 +1,10 @@
+#noBtnMenu {
+  @media (max-width: 1350px) {
+    display: none;
+  }
+}
+#BtnMenu {
+  @media (min-width: 1350px) {
+    display: none;
+  }
+}

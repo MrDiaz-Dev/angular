@@ -29,7 +29,7 @@ import { PlantillasComponent } from './plantillas/plantillas.component';
 import { SituacionLaboralComponent } from './forms/situacion-laboral/situacion-laboral.component';
 import { CabeceraDatosPersonalesComponent } from './cabecera-datos-personales/cabecera-datos-personales.component';
 import { FechaService } from 'src/app/services/utils/fecha.service';
-import { Message } from 'primeng/api';
+import { MenuItem, Message } from 'primeng/api';
 import { DatosTicService } from 'src/app/services/datos-tic.service';
 
 @Component({
@@ -159,6 +159,51 @@ export class PersonalComponent implements OnInit {
   submitLoading = signal<boolean>(false);
   bajaMedicaActual = signal<string | null>(null);
   mailCNB = signal<string>('');
+  opciones = signal<MenuItem[]>([
+    {
+      label: 'Datos personales',
+      icon: 'pi pi-user',
+      command: () => {
+        this.router.navigateByUrl(
+          '/personal/datos-personales/' + this.idPersona()
+        );
+      },
+    },
+    {
+      label: 'Datos Laborales',
+      icon: 'pi pi-book',
+      command: () => {
+        this.router.navigateByUrl(
+          '/personal/datos-comunes/' + this.idPersona()
+        );
+      },
+    },
+    {
+      label: 'Situacion Laboral',
+      icon: 'pi pi-briefcase',
+      command: () => {
+        this.router.navigateByUrl(
+          '/personal/situacion-laboral/' + this.idPersona()
+        );
+      },
+    },
+    {
+      label: 'Plantillas',
+      icon: 'pi pi-file-export',
+      command: () => {
+        this.router.navigateByUrl(
+          '/personal/plantillas/' + this.idPersona()
+        );
+      },
+    },
+    {
+      label: 'Recargar',
+      icon: 'pi pi-replay',
+      command: () => {
+        this.cargarDatos();
+      },
+    },
+  ])
 
   loading = computed<boolean>(() => {
     return !!this.datosPersonales() || !!this.datosComunes();
