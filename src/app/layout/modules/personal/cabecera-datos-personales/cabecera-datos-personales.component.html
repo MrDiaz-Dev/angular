@@ -11,6 +11,7 @@
           [src]="cargarFotografiaURL()"
           alt="avatar"
           class="rounded float-right img-thumbnail img-fluid"
+          showTransitionOptions="0ms"
           [imageStyle]="{
             width: '100%',
             maxWidth: '270px',
@@ -106,8 +107,14 @@
               </span>
             </div>
           </div>
-            <p-messages
+          <p-messages
             [value]="tituloSituacionLaboralActualPMessage()"
+            [closable]="false"
+            styleClass="titulo-situacion"
+            showTransitionOptions="0ms"
+          ></p-messages>
+          <p-messages
+            [value]="bajaMedicaActualPMessage()"
             [closable]="false"
             styleClass="titulo-situacion"
             showTransitionOptions="0ms"

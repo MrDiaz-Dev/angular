@@ -50,4 +50,11 @@ export class DatosPersonalesService {
     const url = `${this.API_URL}/datos-personales/${id}`;
     return this.http.delete<void>(url);
   }
+
+  // --------------------------------------------------------------------------
+
+  getBajaMedicaActual(id: number | string): Observable<any> {
+    const url = this.API_URL + `/datos-personales/baja-medica/${id}`;
+    return this.http.get<any>(url);
+  }
 }

@@ -25,9 +25,11 @@ import { DatosPersonalesService } from 'src/app/services/datos-personales.servic
 import { DatosComunesService } from 'src/app/services/datos-comunes.service';
 import { CustomMessageService } from 'src/app/services/utils/message.service';
 import { Title } from '@angular/platform-browser';
-import { PlantillasComponent } from "./plantillas/plantillas.component";
-import { SituacionLaboralComponent } from "./forms/situacion-laboral/situacion-laboral.component";
-import { CabeceraDatosPersonalesComponent } from "./cabecera-datos-personales/cabecera-datos-personales.component";
+import { PlantillasComponent } from './plantillas/plantillas.component';
+import { SituacionLaboralComponent } from './forms/situacion-laboral/situacion-laboral.component';
+import { CabeceraDatosPersonalesComponent } from './cabecera-datos-personales/cabecera-datos-personales.component';
+import { FechaService } from 'src/app/services/utils/fecha.service';
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-personal',
@@ -39,8 +41,8 @@ import { CabeceraDatosPersonalesComponent } from "./cabecera-datos-personales/ca
     DatosComunesComponent,
     PlantillasComponent,
     SituacionLaboralComponent,
-    CabeceraDatosPersonalesComponent
-],
+    CabeceraDatosPersonalesComponent,
+  ],
   templateUrl: './personal.component.html',
   styleUrl: './personal.component.scss',
 })
@@ -50,6 +52,7 @@ export class PersonalComponent implements OnInit {
   datosPersonalesService = inject(DatosPersonalesService);
   datosComunesService = inject(DatosComunesService);
   messageService = inject(CustomMessageService);
+  fechaService = inject(FechaService);
   title = inject(Title);
 
   // #region variables
@@ -152,6 +155,7 @@ export class PersonalComponent implements OnInit {
   datosComunes = signal<DatosComunes | null>(null);
   situacionLaboral = signal<any>(null);
   submitLoading = signal<boolean>(false);
+  bajaMedicaActual = signal<string | null>(null);
 
   loading = computed<boolean>(() => {
     return !!this.datosPersonales() || !!this.datosComunes();
@@ -169,22 +173,19 @@ export class PersonalComponent implements OnInit {
       },
       { allowSignalWrites: true },
     );
-    
-    effect(
-      () => {
-        console.warn('Cambiaron los datos personales', this.datosPersonales());
-      }
-    );
-    effect(
-      () => {
-        console.warn('Cambiaron los datos comunes', this.datosComunes());
-      }
-    );
-    effect(
-      () => {
-        console.warn('Cambiaron la situacion laboral', this.situacionLaboral());
-      }
-    );
+
+    effect(() => {
+      console.log('Cambiaron los datos personales', this.datosPersonales());
+      console.log('------------------------');
+    });
+    effect(() => {
+      console.log('Cambiaron los datos comunes', this.datosComunes());
+      console.log('------------------------');
+    });
+    effect(() => {
+      console.log('Cambiaron la situacion laboral', this.situacionLaboral());
+      console.log('------------------------');
+    });
   }
 
   // #region metodos
@@ -196,6 +197,7 @@ export class PersonalComponent implements OnInit {
   cargarDatos() {
     this.cargarDatosPersonales();
     this.cargarDatosComunes();
+    this.verficarBajaMedicaPresente();
   }
 
   cargarDatosPersonales() {
@@ -235,6 +237,28 @@ export class PersonalComponent implements OnInit {
             error.error.message ??
               'Error desconocido al cargar los datos comunes',
           );
+        },
+      });
+  }
+
+  verficarBajaMedicaPresente() {
+    // this.loadingBajaMedica = true;
+    this.datosPersonalesService
+      .getBajaMedicaActual(this.idPersona())
+      .subscribe({
+        next: (res) => {
+          console.log('Baja médica actual');
+          console.log(res);
+          if (res.isBajaMedica) {
+            this.bajaMedicaActual.set(res.bajaMedica.fechaInicio);
+          } else {
+            this.bajaMedicaActual.set(null);
+          }
+          // this.loadingBajaMedica = false
+        },
+        error: (error) => {
+          console.log(error);
+          // this.loadingBajaMedica = false
         },
       });
   }
