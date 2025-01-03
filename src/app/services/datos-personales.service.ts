@@ -36,14 +36,14 @@ export class DatosPersonalesService {
     return this.http.get<DatosPersonalesResponse>(url);
   }
 
-  create(datosPersonales: DatosPersonales): Observable<DatosPersonales> {
+  create(data: DatosPersonales): Observable<DatosPersonales> {
     const url = `${this.API_URL}/datos-personales`;
-    return this.http.post<DatosPersonales>(url, datosPersonales);
+    return this.http.post<DatosPersonales>(url, data);
   }
 
-  edit(id: number, datosPersonales: DatosPersonales): Observable<DatosPersonales> {
+  edit(id: number, data: DatosPersonales): Observable<DatosPersonales> {
     const url = `${this.API_URL}/datos-personales/${id}`;
-    return this.http.put<DatosPersonales>(url, datosPersonales);
+    return this.http.put<DatosPersonales>(url, data);
   }
 
   delete(id: number): Observable<void> {

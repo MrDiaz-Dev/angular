@@ -36,14 +36,14 @@ export class PaisesService {
     return this.http.get<PaisesResponse>(url);
   }
 
-  create(datosPersonales: Pais): Observable<Pais> {
+  create(data: Pais): Observable<Pais> {
     const url = `${this.API_URL}/paises`;
-    return this.http.post<Pais>(url, datosPersonales);
+    return this.http.post<Pais>(url, data);
   }
 
-  edit(id: number, datosPersonales: Pais): Observable<Pais> {
+  edit(id: number, data: Pais): Observable<Pais> {
     const url = `${this.API_URL}/paises/${id}`;
-    return this.http.put<Pais>(url, datosPersonales);
+    return this.http.put<Pais>(url, data);
   }
 
   delete(id: number): Observable<void> {

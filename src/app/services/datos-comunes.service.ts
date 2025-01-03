@@ -37,14 +37,14 @@ export class DatosComunesService {
     return this.http.get<DatosComunesResponse>(url);
   }
 
-  create(datosPersonales: DatosComunes): Observable<DatosComunes> {
+  create(data: DatosComunes): Observable<DatosComunes> {
     const url = `${this.API_URL}/per-datos-comunes`;
-    return this.http.post<DatosComunes>(url, datosPersonales);
+    return this.http.post<DatosComunes>(url, data);
   }
 
-  edit(id: number, datosPersonales: DatosComunes): Observable<DatosComunes> {
+  edit(id: number, data: DatosComunes): Observable<DatosComunes> {
     const url = `${this.API_URL}/per-datos-comunes/${id}`;
-    return this.http.put<DatosComunes>(url, datosPersonales);
+    return this.http.put<DatosComunes>(url, data);
   }
 
   delete(id: number): Observable<void> {

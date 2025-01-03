@@ -1,21 +1,21 @@
+import { DatosPersonales } from './datos-personales.interface';
 import {
-  CategoriasTrabajadoresSimpleDTO,
-  TiposLaboralesSubvSimpleDTO,
-  TitulacionesSimpleDTO,
-  FuentesFinanciacionSimpleDTO,
-  TiposJornadaSimpleDTO,
-  CuentasCargoSimpleDTO,
-  DatosPersonalesSimpleDTO,
-  LaboratoriosSimpleDTO,
-  DepartamentosSimpleDTO,
-  ServiciosSimpleDTO,
-  GruposSalarialesSimpleDTO,
-  ConveniosSimpleDTO,
-  AreasFuncionalesSimpleDTO,
-  ProyectosSimpleDTO,
-  UniversidadesSimpleDTO,
-  CentrosPertenenciasSimpleDTO,
-  TiposPracticasSimpleDTO,
+  CategoriaTrabajador,
+  TipoLaboralSubv,
+  Titulacion,
+  FuenteFinanciacion,
+  TipoJornada,
+  CuentaCargo,
+  Laboratorio,
+  Departamento,
+  Servicio,
+  GrupoSalarial,
+  Convenio,
+  AreaFuncional,
+  Proyecto,
+  Universidad,
+  CentroPertenencia,
+  TipoPractica,
 } from './entidades.interface';
 
 export interface Trabajador {
@@ -60,21 +60,21 @@ export interface Trabajador {
   cuenta2?: string;
   categoria?: string;
   tipoPermiso2018?: string;
-  idGrupo?: string | GruposSalarialesSimpleDTO;
-  idArea?: string | AreasFuncionalesSimpleDTO;
+  idGrupo?: string | GrupoSalarial;
+  idArea?: string | AreaFuncional;
   fuenteFinanciacion?: string;
   tipoLabSubv?: string;
   cuenta3?: string;
   denominacion?: string;
   idTipo?: string | idNombre;
-  idCategoria?: string | CategoriasTrabajadoresSimpleDTO;
-  idProyecto?: string | ProyectosSimpleDTO;
-  idConvenio?: string | ConveniosSimpleDTO;
-  idDepto?: string | DepartamentosSimpleDTO;
+  idCategoria?: string | CategoriaTrabajador;
+  idProyecto?: string | Proyecto;
+  idConvenio?: string | Convenio;
+  idDepto?: string | Departamento;
   asegurador?: string;
   tipoPermiso?: string;
-  idPersona?: string | DatosPersonalesSimpleDTO;
-  idServicio?: string | ServiciosSimpleDTO;
+  idPersona?: string | DatosPersonales;
+  idServicio?: string | Servicio;
   prorrogasTrabajadores?: string[];
   documentos?: string[];
   laboratorio?: string;
@@ -85,10 +85,10 @@ export interface Trabajador {
   tardes?: string;
   complementoSalarial?: string;
   responsable?: string;
-  idTitulacion?: string | TitulacionesSimpleDTO;
-  idUniversidad?: string | UniversidadesSimpleDTO;
-  idCentroPertenencia?: string | CentrosPertenenciasSimpleDTO;
-  idTipoPractica?: string | TiposPracticasSimpleDTO;
+  idTitulacion?: string | Titulacion;
+  idUniversidad?: string | Universidad;
+  idCentroPertenencia?: string | CentroPertenencia;
+  idTipoPractica?: string | TipoPractica;
   fechaSentencia?: string;
   referenciaAyuda?: string;
   cofinanciacion?: string;
@@ -96,6 +96,12 @@ export interface Trabajador {
   seguroRc?: string;
   empresa?: string;
 }
+
+export interface TrabajadorResponse {
+  'hydra:member': Trabajador[];
+  'hydra:totalItems': number;
+}
+
 
 interface idNombre {
   id: number;
@@ -109,89 +115,89 @@ export interface PerLaboral {
 
 }
 
-export interface PerLaboralConCargoProgramasSubvencionadosDTO {
+export interface PerLaboralConCargoProgramasSubvencionados {
   id: number;
   fechaConv?: Date;
   referenciaAyuda?: string;
   numRegistroPersonal?: string;
-  categoria?: CategoriasTrabajadoresSimpleDTO;
-  tipoLabSubv?: TiposLaboralesSubvSimpleDTO;
-  idTitulacion?: TitulacionesSimpleDTO;
-  fuenteFinanciacion?: FuentesFinanciacionSimpleDTO;
+  categoria?: CategoriaTrabajador;
+  tipoLabSubv?: TipoLaboralSubv;
+  idTitulacion?: Titulacion;
+  fuenteFinanciacion?: FuenteFinanciacion;
   cofinanciacion?: string;
   financiacion?: string;
   pagas?: string;
-  tipoJornada?: TiposJornadaSimpleDTO;
-  cuenta?: CuentasCargoSimpleDTO;
+  tipoJornada?: TipoJornada;
+  cuenta?: CuentaCargo;
   tardes?: string;
   complementoSalarial?: string;
-  responsable?: DatosPersonalesSimpleDTO;
-  laboratorio?: LaboratoriosSimpleDTO;
-  idDepto?: DepartamentosSimpleDTO;
-  idServicio?: ServiciosSimpleDTO;
+  responsable?: DatosPersonales;
+  laboratorio?: Laboratorio;
+  idDepto?: Departamento;
+  idServicio?: Servicio;
   observaciones?: string;
 }
 
-export interface PerLaboralConCargoProyectoDTO {
+export interface PerLaboralConCargoProyecto {
   id: number;
   solaut?: number;
   fechaConv?: Date;
   diasVacaciones?: string;
-  fuenteFinanciacion?: FuentesFinanciacionSimpleDTO;
+  fuenteFinanciacion?: FuenteFinanciacion;
   financiacion?: string;
   porcentaje?: string;
-  idArea?: AreasFuncionalesSimpleDTO;
-  idGrupo?: GruposSalarialesSimpleDTO;
-  idTitulacion?: TitulacionesSimpleDTO;
-  tipoJornada?: TiposJornadaSimpleDTO;
+  idArea?: AreaFuncional;
+  idGrupo?: GrupoSalarial;
+  idTitulacion?: Titulacion;
+  tipoJornada?: TipoJornada;
   pagas?: number;
-  idProyecto?: ProyectosSimpleDTO;
-  idConvenio?: ConveniosSimpleDTO;
+  idProyecto?: Proyecto;
+  idConvenio?: Convenio;
   tareas?: string;
-  responsable?: DatosPersonalesSimpleDTO;
-  laboratorio?: LaboratoriosSimpleDTO;
-  idDepto?: DepartamentosSimpleDTO;
-  idServicio?: ServiciosSimpleDTO;
+  responsable?: DatosPersonales;
+  laboratorio?: Laboratorio;
+  idDepto?: Departamento;
+  idServicio?: Servicio;
   observaciones?: string;
 }
 
-export interface PerLaboralesFijosDTO {
+export interface PerLaboralesFijos {
   id: number;
   fechaJubilacion?: Date;
   fechaJubilacionEf?: Date;
   numRegistroPersonal?: string;
   rpt?: string;
   complementoSalarial?: string;
-  idArea?: AreasFuncionalesSimpleDTO;
-  idGrupo?: GruposSalarialesSimpleDTO;
-  idTitulacion?: TitulacionesSimpleDTO;
-  tipoJornada?: TiposJornadaSimpleDTO;
-  responsable?: DatosPersonalesSimpleDTO;
-  laboratorio?: LaboratoriosSimpleDTO;
-  idDepto?: DepartamentosSimpleDTO;
-  idServicio?: ServiciosSimpleDTO;
+  idArea?: AreaFuncional;
+  idGrupo?: GrupoSalarial;
+  idTitulacion?: Titulacion;
+  tipoJornada?: TipoJornada;
+  responsable?: DatosPersonales;
+  laboratorio?: Laboratorio;
+  idDepto?: Departamento;
+  idServicio?: Servicio;
   observaciones?: string;
 }
 
-export interface PerLaboralIndefinidoNoFijoPorSentenciaDTO {
+export interface PerLaboralIndefinidoNoFijoPorSentencia {
   id: number;
   numRegistroPersonal?: string;
-  idArea?: AreasFuncionalesSimpleDTO;
-  idGrupo?: GruposSalarialesSimpleDTO;
-  idTitulacion?: TitulacionesSimpleDTO;
-  tipoJornada?: TiposJornadaSimpleDTO;
+  idArea?: AreaFuncional;
+  idGrupo?: GrupoSalarial;
+  idTitulacion?: Titulacion;
+  tipoJornada?: TipoJornada;
   pagas?: string;
   fechaSentencia?: Date;
   tardes?: string;
   complementoSalarial?: string;
-  responsable?: DatosPersonalesSimpleDTO;
-  laboratorio?: LaboratoriosSimpleDTO;
-  idDepto?: DepartamentosSimpleDTO;
-  idServicio?: ServiciosSimpleDTO;
+  responsable?: DatosPersonales;
+  laboratorio?: Laboratorio;
+  idDepto?: Departamento;
+  idServicio?: Servicio;
   observaciones?: string;
 }
 
-export interface PerLaboralInterinoDTO {
+export interface PerLaboralInterino {
   id: number;
   tardes?: string;
   complementoSalarial?: string;
@@ -199,13 +205,13 @@ export interface PerLaboralInterinoDTO {
   fechaFinSeguroAcc?: Date;
   fechaFinSeguroRc?: Date;
   numRegistroPersonal?: string;
-  categoria?: CategoriasTrabajadoresSimpleDTO;
-  idTitulacion?: TitulacionesSimpleDTO;
-  tipoJornada?: TiposJornadaSimpleDTO;
-  responsable?: DatosPersonalesSimpleDTO;
-  laboratorio?: LaboratoriosSimpleDTO;
-  idDepto?: DepartamentosSimpleDTO;
-  idServicio?: ServiciosSimpleDTO;
+  categoria?: CategoriaTrabajador;
+  idTitulacion?: Titulacion;
+  tipoJornada?: TipoJornada;
+  responsable?: DatosPersonales;
+  laboratorio?: Laboratorio;
+  idDepto?: Departamento;
+  idServicio?: Servicio;
   observaciones?: string;
 }
 

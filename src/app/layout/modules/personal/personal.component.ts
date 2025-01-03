@@ -31,6 +31,8 @@ import { CabeceraDatosPersonalesComponent } from './cabecera-datos-personales/ca
 import { FechaService } from 'src/app/services/utils/fecha.service';
 import { MenuItem, Message } from 'primeng/api';
 import { DatosTicService } from 'src/app/services/datos-tic.service';
+import { TrabajadoresService } from 'src/app/services/trabajadores.service';
+import { Trabajador } from '../../interfaces/trabajador.interface';
 
 @Component({
   selector: 'app-personal',
@@ -52,6 +54,7 @@ export class PersonalComponent implements OnInit {
   router = inject(Router);
   datosPersonalesService = inject(DatosPersonalesService);
   datosComunesService = inject(DatosComunesService);
+  trabajadoresService = inject(TrabajadoresService);
   datosTicService = inject(DatosTicService);
   messageService = inject(CustomMessageService);
   fechaService = inject(FechaService);
@@ -249,6 +252,7 @@ export class PersonalComponent implements OnInit {
   cargarDatos() {
     this.cargarDatosPersonales();
     this.cargarDatosComunes();
+    this.cargarSituacionLaboral();
     this.verficarBajaMedicaPresente();
   }
 
@@ -293,6 +297,21 @@ export class PersonalComponent implements OnInit {
         },
       });
   }
+
+  cargarSituacionLaboral() {
+    this.trabajadoresService.getByIDPersona(this.idPersona() as number).subscribe({
+      next: (trabajador) => {
+        this.situacionLaboral.set(trabajador);
+      },
+      error: (error) => {
+        console.error(error);
+        this.messageService.error(
+          error.error.message || error.message ||
+            'Error desconocido al cargar la situación laboral',
+        );
+      },
+    })
+  } 
 
   verficarBajaMedicaPresente() {
     // this.loadingBajaMedica = true;

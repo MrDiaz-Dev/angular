@@ -36,14 +36,14 @@ export class TitulacionesService {
     return this.http.get<TitulacionResponse>(url);
   }
 
-  create(datosPersonales: Titulacion): Observable<Titulacion> {
+  create(data: Titulacion): Observable<Titulacion> {
     const url = `${this.API_URL}/titulaciones`;
-    return this.http.post<Titulacion>(url, datosPersonales);
+    return this.http.post<Titulacion>(url, data);
   }
 
-  edit(id: number, datosPersonales: Titulacion): Observable<Titulacion> {
+  edit(id: number, data: Titulacion): Observable<Titulacion> {
     const url = `${this.API_URL}/titulaciones/${id}`;
-    return this.http.put<Titulacion>(url, datosPersonales);
+    return this.http.put<Titulacion>(url, data);
   }
 
   delete(id: number): Observable<void> {
