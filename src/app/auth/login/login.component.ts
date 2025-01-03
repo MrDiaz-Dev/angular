@@ -91,9 +91,9 @@ export class LoginComponent implements OnInit {
       if (this.usuarioService.canDoSomething()) {
         this.usuarioService.login(this.myForm.value).subscribe(
           (resp) => {
-            this.messageService.success(
-              'You have entered to the system successfully',
-            );
+            // this.messageService.success(
+            //   'You have entered to the system successfully',
+            // );
             localStorage.setItem('username', `${this.myForm.value.username}`);
             
             // verificar hay existe historial de navegación
@@ -108,7 +108,7 @@ export class LoginComponent implements OnInit {
           (error) => {
             console.log(error);
             this.loading = false;
-            this.messageService.error(error.message);
+            this.messageService.error(error.error.message || error.message || 'Error al iniciar sesión');
           },
         );
         clearInterval(interval);

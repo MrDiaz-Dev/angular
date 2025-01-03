@@ -220,7 +220,7 @@ export class PersonalComponent implements OnInit {
         error: (error) => {
           console.error(error);
           this.messageService.error(
-            error.error.message ??
+            error.error.message || error.message ||
               'Error desconocido al cargar los datos personales',
           );
         },
@@ -242,7 +242,7 @@ export class PersonalComponent implements OnInit {
         error: (error) => {
           console.error(error);
           this.messageService.error(
-            error.error.message ??
+            error.error.message || error.message ||
               'Error desconocido al cargar los datos comunes',
           );
         },

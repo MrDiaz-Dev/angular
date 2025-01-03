@@ -186,7 +186,7 @@ export class DatosPersonalesComponent implements OnInit {
         error: (error) => {
           console.error(error);
           this.messageService.error(
-            error.error.message ??
+            error.error.message || error.message ||
               'Error desconocido al actualizar los datos personales',
           );
           this.submitLoading.set(false);

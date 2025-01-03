@@ -160,7 +160,7 @@ export class BusReducidaListadoComponent {
         error: (error) => {
           console.error(error);
           this.messageService.error(
-            error.error.message ?? 'Error desconocido al cargar los datos',
+            error.error.message || error.message || 'Error desconocido al cargar los datos',
           );
         },
       });

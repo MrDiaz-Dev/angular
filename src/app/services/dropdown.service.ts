@@ -51,7 +51,7 @@ export class DropdownService {
           error: (error) => {
             console.error(error);
             this.messageService.error(
-              error.error.message ?? 'Error desconocido al cargar los paises',
+              error.error.message || error.message || 'Error desconocido al cargar los paises',
               'ERROR CON LOS PAISES',
             );
             resolve([]);
@@ -90,7 +90,7 @@ export class DropdownService {
           error: (error) => {
             console.error(error);
             this.messageService.error(
-              error.error.message ??
+              error.error.message || error.message ||
                 'Error desconocido al cargar las titulaciones',
               'ERROR CON LAS TITULACIONES',
             );
