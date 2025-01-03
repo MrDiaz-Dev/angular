@@ -164,6 +164,8 @@ export class PersonalComponent implements OnInit {
     return !!this.datosPersonales() || !!this.datosComunes();
   });
 
+  hiddenTime: number | null = null;
+
   // #endregion
 
   // region constructor y efectos
@@ -189,6 +191,8 @@ export class PersonalComponent implements OnInit {
       console.log('Cambiaron la situacion laboral', this.situacionLaboral());
       console.log('------------------------');
     });
+
+    document.addEventListener('visibilitychange', this.handleVisibilityChange);
   }
 
   // #region metodos
@@ -280,6 +284,20 @@ export class PersonalComponent implements OnInit {
       this.router.navigateByUrl(previousPersonalPage);
     } else {
       this.router.navigate(['/']);
+    }
+  }
+
+  handleVisibilityChange = () => {
+    let diezMinutos = 10 * 60 * 1000; // 10 minutos
+    
+    if (document.hidden) {
+      this.hiddenTime = Date.now();
+    } else {
+      if (this.hiddenTime && (Date.now() - this.hiddenTime >= diezMinutos)) {
+        console.log('La pestaña estuvo oculta por 10 minutos o más');
+        this.cargarDatos(); // Llama a tu método para recargar datos
+      }
+      this.hiddenTime = null;
     }
   }
 

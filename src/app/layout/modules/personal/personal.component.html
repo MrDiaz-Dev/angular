@@ -77,7 +77,14 @@
           pTooltip="Ver plantillas"
           tooltipPosition="top"
           [routerLink]="'/personal/plantillas/' + idPersona()"
+          styleClass="mr-2"
           [outlined]="page() !== 4"
+        ></p-button>
+        <p-button
+          icon="pi pi-replay"
+          pTooltip="Recargar datos"
+          tooltipPosition="left"
+          (onClick)="cargarDatos()"
         ></p-button>
       </ng-template>
     </p-toolbar>
