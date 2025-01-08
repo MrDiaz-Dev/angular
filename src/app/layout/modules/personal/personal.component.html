@@ -110,6 +110,17 @@
     <hr />
   </div>
 
+  
+  @if (!!datosPersonales() && !!datosComunes() && page() !== 1) {
+    <app-cabecera-datos-personales
+      [(datosPersonales)]="datosPersonales"
+      [datosComunesIdTipo]="datosComunes().idTipo"
+      [bajaMedicaActual]="bajaMedicaActual()"
+    ></app-cabecera-datos-personales>
+    <hr />
+    <br />
+  }
+
   @switch (page()) {
     @case (1) {
       @if (!!datosPersonales()) {
@@ -120,15 +131,6 @@
       }
     }
     @case (2) {
-      @if (!!datosPersonales() && !!datosComunes()) {
-        <app-cabecera-datos-personales
-          [(datosPersonales)]="datosPersonales"
-          [datosComunesIdTipo]="datosComunes().idTipo"
-          [bajaMedicaActual]="bajaMedicaActual()"
-        ></app-cabecera-datos-personales>
-        <hr />
-        <br />
-      }
       @if (!!datosComunes()) {
         <app-datos-comunes
           [(datosComunes)]="datosComunes"
@@ -139,15 +141,6 @@
       }
     }
     @case (3) {
-      @if (!!datosPersonales() && !!datosComunes()) {
-        <app-cabecera-datos-personales
-          [(datosPersonales)]="datosPersonales"
-          [datosComunesIdTipo]="datosComunes().idTipo"
-          [bajaMedicaActual]="bajaMedicaActual()"
-        ></app-cabecera-datos-personales>
-        <hr />
-        <br />
-      }
       @if (!!situacionLaboral()) {
         <app-situacion-laboral
           [(situacionLaboral)]="situacionLaboral"
@@ -157,15 +150,6 @@
       }
     }
     @case (4) {
-      @if (!!datosPersonales() && !!datosComunes()) {
-        <app-cabecera-datos-personales
-          [(datosPersonales)]="datosPersonales"
-          [datosComunesIdTipo]="datosComunes().idTipo"
-          [bajaMedicaActual]="bajaMedicaActual()"
-        ></app-cabecera-datos-personales>
-        <hr />
-        <br />
-      }
       <app-plantillas></app-plantillas>
     }
   }
