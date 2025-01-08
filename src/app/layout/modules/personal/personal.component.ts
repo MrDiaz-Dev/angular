@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import {
   Component,
   computed,
@@ -38,14 +38,13 @@ import { Trabajador } from '../../interfaces/trabajador.interface';
   selector: 'app-personal',
   standalone: true,
   imports: [
-    CommonModule,
     PrimeNgModule,
     DatosPersonalesComponent,
     DatosComunesComponent,
     PlantillasComponent,
     SituacionLaboralComponent,
-    CabeceraDatosPersonalesComponent,
-  ],
+    CabeceraDatosPersonalesComponent
+],
   templateUrl: './personal.component.html',
   styleUrl: './personal.component.scss',
 })
@@ -299,7 +298,7 @@ export class PersonalComponent implements OnInit {
   }
 
   cargarSituacionLaboral() {
-    this.trabajadoresService.getByIDPersona(this.idPersona() as number).subscribe({
+    this.trabajadoresService.getSituacionActualByIDPersona(this.idPersona() as number).subscribe({
       next: (trabajador) => {
         this.situacionLaboral.set(trabajador);
       },
