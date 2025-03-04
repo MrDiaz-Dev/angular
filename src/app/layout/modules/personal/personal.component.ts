@@ -176,7 +176,7 @@ export class PersonalComponent implements OnInit {
       icon: 'pi pi-book',
       command: () => {
         this.router.navigateByUrl(
-          '/personal/datos-comunes/' + this.idPersona()
+          '/personal/datos-laborales/' + this.idPersona()
         );
       },
     },
